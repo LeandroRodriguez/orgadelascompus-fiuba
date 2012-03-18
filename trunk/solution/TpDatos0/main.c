@@ -125,6 +125,7 @@ int main(int argc, char *argv[]){
               exit(EXIT_SUCCESS);
 
           case 'v' : /* -v o --version */
+              printf("%s","Programa version:1.0 Creditos:TomReaFpiechoLeanRo\n");
               break;
 
           case 'm' :

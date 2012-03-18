@@ -4,3 +4,8 @@
 	<stdlib.h>
 	<string.h>
 
+1332103795 source:/home/tom/Escritorio/Tp0Svn/trunk/solution/TpDatos0/main.c
+	<stdio.h>
+	<stdlib.h>
+	<getopt.h>
+
