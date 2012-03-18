@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <getopt.h>
 
+/*Testing the commit*/
+
 void SelectionSort(char* Vect, int n)
 {
    int minimo=0,i,j;
