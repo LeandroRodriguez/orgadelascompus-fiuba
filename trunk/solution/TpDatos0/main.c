@@ -106,11 +106,11 @@ int main(int argc, char *argv[]){
       exit(EXIT_SUCCESS);
   }
 
-  while (true)
+  while (1)
   {
-      FlagVersion=false;
-      FlagMergeSort=false;
-      FlagSelectionSort=false;
+      bool FlagVersion=false;
+      bool FlagMergeSort=false;
+      bool FlagSelectionSort=false;
 
       /* Llamamos a la función getopt */
       ParametroLeido = getopt_long (argc, argv, OpcionesCortas, OpcionesLargas, NULL);
@@ -128,13 +128,16 @@ int main(int argc, char *argv[]){
               FlagVersion = true ;
               break;
 
-          case 'o' : /* -o ó --output */
-              fichero_salida = optarg; /* optarg contiene el argumento de -o */
+          case 'm' :
+              //fichero_salida = optarg; /* optarg contiene el argumento de -o */
+              break;
+
+          case 's' :
               break;
 
           case '?' : /* opción no valida */
               imprime_uso(); /* código de salida 1 */
-              exit(1);
+              exit(EXIT_SUCCESS);
 
           case -1 : /* No hay más opciones */
               break;
