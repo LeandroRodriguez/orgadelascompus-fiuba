@@ -88,8 +88,7 @@ void ExportarCadena(int* Cadena,unsigned int longitud ){
 
     printf("%s","abrio exportar cadena");
     unsigned int i=0;
-    for(i=0;i<longitud;i=i+1){//ojo
-       fputc(i, stdout);
+    for(i=0;i<longitud;i=i+1){
        fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
     }
      printf("%s","  cerro exportar cadena");
@@ -140,7 +139,7 @@ int main(int argc, char *argv[]){
     /* Si se ejecuta sin parámetros ni opciones */
   if (argc == 1){Menu();exit(EXIT_SUCCESS);}
 
-  int* Cadena=(int*) malloc(sizeof(int));
+  int* Cadena=(int*) malloc(sizeof(int));//importante
 
   unsigned int LongitudCadenaAexportar=0;
 
