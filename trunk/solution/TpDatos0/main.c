@@ -92,13 +92,16 @@ void ExportarCadena(char* cadena,unsigned int longitud ){
 
 char* SubLeer(char* PunteroArutaDeArchivo,unsigned int* lon){
         FILE* ArchivoFisico = fopen(PunteroArutaDeArchivo,"r");
-            if(ArchivoFisico==NULL)return NULL;//archivo no existe
+            if(ArchivoFisico==NULL){
+                printf("%s","Archivo fisico null\n");
+                return NULL;//archivo no existe
+            }
         char c;
         char* CadenaBruta= (char*) malloc(sizeof(char));
         *lon = 0;//nunca esta de mas asegurarse
         while(c!=EOF){
             c=fgetc(ArchivoFisico);
-            lon=lon+1;
+            *lon=*lon+1;
             CadenaBruta = (char*)realloc(CadenaBruta,sizeof(char)*(*lon));
             CadenaBruta[*lon-1]=c;
             }
@@ -116,8 +119,9 @@ int main(int argc, char *argv[]){
 
     int ParametroLeido=0;
     unsigned int longitud=0;
+    unsigned int YaExporto=0;
   /* Lista de las opciones cortas válidas */
-  const char* const OpcionesCortas = "hvm:s:" ;
+    const char* const OpcionesCortas = "hvm:s:" ;
 
   /* Una estructura de varios arrays describiendo los valores largos */
   const struct option OpcionesLargas[] =
@@ -131,15 +135,22 @@ int main(int argc, char *argv[]){
     /* Si se ejecuta sin parámetros ni opciones */
   if (argc == 1){Menu();exit(EXIT_SUCCESS);}
 
-  while (1)
-  {
+  while (1){
       int FlagMergeSort=0;
       int FlagSelectionSort=0;
       /* Llamamos a la función getopt */
       ParametroLeido = getopt_long (argc, argv, OpcionesCortas, OpcionesLargas, NULL);
+      char* Ruta= optarg;//optarg es como una variable global que viene
+        //con la libreria getopt.h y que modifica el metodo getopt.Apunta al argumento de un parametro ("-x:<arg>").
+        //LOGICA por si son varios archivos va aca.
 
-      if (ParametroLeido == -1)
+      if (ParametroLeido == -1 && (YaExporto)){
           break; /* No hay más opciones. Rompemos el bucle */
+          }else{
+            printf("%s","argv[1]=");
+              printf("%s", argv[1]);
+            printf("%s","\n");
+          }
 
       switch (ParametroLeido)
       {
@@ -149,6 +160,7 @@ int main(int argc, char *argv[]){
 
           case 'v' : /* -v o --version */
               printf("%s","Programa version:1.0 Creditos:TomReaFpiechoLeanRo\n");
+              exit(EXIT_SUCCESS);
               break;
 
           case 'm' :
@@ -160,32 +172,35 @@ int main(int argc, char *argv[]){
               break;
 
           case '?' : /* opción no valida */
-              printf("%s","Opcion no valida.Tipee -h o help y pruebe de vuelta");
+              printf("%s","Opcion no valida.Tipee -h o --help y pruebe de vuelta\n");
               exit(EXIT_SUCCESS);
 
-          case -1 : /* No hay más opciones */
+          case -1 :
+            FlagMergeSort=1;
+            YaExporto=1;
+            Ruta=argv[1];//ojo con esto
+            printf("%s","YaExporto=1\n");
               break;
 
-          default : /* Algo más? Quizas archivo ordenandose por metodo default */
-            FlagMergeSort=1;//merge sort elegido para default.
+          default :
               break;
 	  }
     if(FlagMergeSort  ^ FlagSelectionSort){
-        char* Ruta= optarg;//optarg es como una variable global que viene
-        //con la libreria getopt.h y que modifica el metodo getopt.Apunta al argumento de un parametro ("-x:<arg>").
-        //LOGICA por si son varios archivos va aca.
         char* Cadena = LeerArchivoDeCaracteres(Ruta,&longitud);
         if(Cadena!=NULL){
 
-            printf("%s","Cadena leida desde el archivo no es NULL");
+            printf("%s","Cadena NO nula\n");
 
             if(FlagMergeSort)MergeSort(Cadena,longitud);
-            if(FlagSelectionSort)SelectionSort(Cadena,longitud);
+
+            if(FlagSelectionSort){SelectionSort(Cadena,longitud);}
+
             ExportarCadena(Cadena,longitud);
-            }else{printf("%s","No existe el archivo.");}
+
+            }else{
+                printf("%s","No existe el archivo.\n");
+                }
         }
     }
-
-    getc(stdin);
     return 0;
 }
