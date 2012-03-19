@@ -90,23 +90,23 @@ void ExportarCadena(char* cadena,unsigned int longitud ){
     }
 }
 
-char* SubLeer(char* PunteroArutaDeArchivo,unsigned int longitud){
+char* SubLeer(char* PunteroArutaDeArchivo,unsigned int* lon){
         FILE* ArchivoFisico = fopen(PunteroArutaDeArchivo,"r");
             if(ArchivoFisico==NULL)return NULL;//archivo no existe
         char c;
         char* CadenaBruta= (char*) malloc(sizeof(char));
-        longitud = 0;//nunca esta de mas asegurarse
+        *lon = 0;//nunca esta de mas asegurarse
         while(c!=EOF){
             c=fgetc(ArchivoFisico);
-            longitud=longitud+1;
-            CadenaBruta = (char*)realloc(CadenaBruta,sizeof(char)*longitud);
-            CadenaBruta[longitud-1]=c;
+            lon=lon+1;
+            CadenaBruta = (char*)realloc(CadenaBruta,sizeof(char)*(*lon));
+            CadenaBruta[*lon-1]=c;
             }
         fclose(ArchivoFisico);
     return CadenaBruta;
 }
 
-char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int& longitud){
+char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int* longitud){
     char* Cadena=NULL;
     if(PunteroArutaDeArchivo!=NULL) {Cadena=SubLeer(PunteroArutaDeArchivo,longitud);}
     return Cadena;
@@ -115,7 +115,7 @@ char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int& longitud
 int main(int argc, char *argv[]){
 
     int ParametroLeido=0;
-    int longitud=0;
+    unsigned int longitud=0;
   /* Lista de las opciones cortas válidas */
   const char* const OpcionesCortas = "hvm:s:" ;
 
@@ -174,7 +174,7 @@ int main(int argc, char *argv[]){
         char* Ruta= optarg;//optarg es como una variable global que viene
         //con la libreria getopt.h y que modifica el metodo getopt.Apunta al argumento de un parametro ("-x:<arg>").
         //LOGICA por si son varios archivos va aca.
-        char* Cadena = LeerArchivoDeCaracteres(Ruta,longitud);
+        char* Cadena = LeerArchivoDeCaracteres(Ruta,&longitud);
         if(Cadena!=NULL){
 
             printf("%s","Cadena leida desde el archivo no es NULL");
