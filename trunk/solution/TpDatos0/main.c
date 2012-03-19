@@ -2,10 +2,8 @@
 #include <stdlib.h>
 #include <getopt.h>
 
-/*Testing the commit*/
 
-void SelectionSort(char* Vect, int n)
-{
+void SelectionSort(char* Vect, int n){
    int minimo=0,i,j;
    int swap;
    for(i=0 ; i<n-1 ; i++)
@@ -20,8 +18,7 @@ void SelectionSort(char* Vect, int n)
    }
 }
 
-void MergeSort(char VectorAordenar[], int n)
-{
+void MergeSort(char VectorAordenar[], int n){
     void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[])
 {
     //posicion dentro del array
@@ -84,10 +81,40 @@ void Menu(){
     printf("%s","-s : selection sort\n");
 }
 
+void ExportarCadena(char* cadena,unsigned int longitud ){
 
+    unsigned int i=0;
+    for(i=0;i<longitud;i=i+1){
+       fputc(cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
+    }
+}
+
+char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int longitud){
+    char* SubLeer(char* PunteroArutaDeArchivo,unsigned int longitud){
+        FILE* ArchivoFisico = fopen(PunteroArutaDeArchivo,"r");
+            if(ArchivoFisico==NULL)return NULL;//archivo no existe
+        char c;
+        char* CadenaBruta= (char*) malloc(sizeof(char));
+        longitud = 0;//nunca esta de mas asegurarse
+        while(c!=EOF){
+            c=fgetc(ArchivoFisico);
+            longitud=longitud+1;
+            CadenaBruta = (char*)realloc(CadenaBruta,sizeof(char)*longitud);
+            CadenaBruta[longitud-1]=c;
+            }
+        fclose(ArchivoFisico);
+    return CadenaBruta;
+        }
+
+    char* Cadena=NULL;
+    if(PunteroArutaDeArchivo!=NULL) {Cadena=SubLeer(PunteroArutaDeArchivo,longitud);}
+    return Cadena;
+}
 int main(int argc, char *argv[]){
 
-    int ParametroLeido;
+    int ParametroLeido=0;
+
+    int longitud=0;
 
   /* Lista de las opciones cortas válidas */
   const char* const OpcionesCortas = "hvm:s:" ;
@@ -102,18 +129,12 @@ int main(int argc, char *argv[]){
   };
 
     /* Si se ejecuta sin parámetros ni opciones */
-  if (argc == 1)
-  {
-      Menu();
-      exit(EXIT_SUCCESS);
-  }
+  if (argc == 1){Menu();exit(EXIT_SUCCESS);}
 
   while (1)
   {
-      int FlagVersion=0;
       int FlagMergeSort=0;
       int FlagSelectionSort=0;
-
       /* Llamamos a la función getopt */
       ParametroLeido = getopt_long (argc, argv, OpcionesCortas, OpcionesLargas, NULL);
 
@@ -131,25 +152,37 @@ int main(int argc, char *argv[]){
               break;
 
           case 'm' :
-              //fichero_salida = optarg; /* optarg contiene el argumento de -o */
+              FlagMergeSort=1;
               break;
 
           case 's' :
+            FlagSelectionSort=1;
               break;
 
           case '?' : /* opción no valida */
-              Menu(); /* código de salida 1 */
+              printf("%s","Opcion no valida.Tipee -h o help y pruebe de vuelta");
               exit(EXIT_SUCCESS);
 
           case -1 : /* No hay más opciones */
               break;
 
-          default : /* Algo más? No esperado. Abortamos */
-              abort();
+          default : /* Algo más? Quizas archivo ordenandose por metodo default */
+            FlagMergeSort=1;//merge sort elegido para default.
+              break;
 	  }
-  }
+    if(FlagMergeSort  ^ FlagSelectionSort){
+        char* Ruta= optarg;//optarg es como una variable global que viene
+        //con la libreria getopt.h y que modifica el metodo getopt.Apunta al argumento de un parametro ("-x:<arg>").
+        //LOGICA por si son varios archivos va aca.
+        char* Cadena = LeerArchivoDeCaracteres(Ruta,longitud);
+        if(Cadena!=NULL){
+            if(FlagMergeSort)MergeSort(Cadena,longitud);
+            if(FlagSelectionSort)SelectionSort(Cadena,longitud);
+            ExportarCadena(Cadena,longitud);
+            }else{printf("%s","No existe el archivo.");}
+        }
+    }
 
-
-
+    getc(stdin);
     return 0;
 }
