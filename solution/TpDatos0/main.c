@@ -3,22 +3,24 @@
 #include <getopt.h>
 
 
-void SelectionSort(char* Vect, int n){
-   int minimo=0,i,j;
-   int swap;
-   for(i=0 ; i<n-1 ; i++)
-   {
-      minimo=i;
-      for(j=i+1 ; j<n ; j++)
-         if (Vect[minimo] > Vect[j])
+void SelectionSort(int* Vect, int n){
+    if(n>1){
+        int minimo=0,i,j;
+        int swap;
+        for(i=0 ; i<n-1 ; i++)
+        {
+            minimo=i;
+            for(j=i+1 ; j<n ; j++)
+            if (Vect[minimo] > Vect[j])
             minimo=j;
-      swap=Vect[minimo];
-      Vect[minimo]=Vect[i];
-      Vect[i]=swap;
-   }
+            swap=Vect[minimo];
+            Vect[minimo]=Vect[i];
+            Vect[i]=swap;
+            }
+        }
 }
 
-void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[]){
+void Merge(int arreglo1[], int n1, int arreglo2[], int n2, int arreglo3[]){
     //posicion dentro del array
     int x1=0, x2=0, x3=0;
 
@@ -44,9 +46,9 @@ void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[]){
     }
 }
 
-void MergeSort(char VectorAordenar[], int n){
+void MergeSort(int VectorAordenar[], int n){
 
-    char *vector1, *vector2;
+    int *vector1, *vector2;
     int n1, n2,x,y;
     if (n>1)
     {
@@ -58,8 +60,8 @@ void MergeSort(char VectorAordenar[], int n){
             n1=(int) n / 2;n2=n1+1;
         }
         //pido espacio para los 2 vectores, guardo punteros a esas posiciones de memoria
-        vector1=(char *) malloc(sizeof(char)*n1);
-        vector2=(char *) malloc(sizeof(char)*n2);
+        vector1=(int *) malloc(sizeof(int)*n1);
+        vector2=(int *) malloc(sizeof(int)*n2);
         //cargo mis 2 vectores, cada uno con la "mitad" de los datos del vector Original
         for(x=0;x<n1;x++)
             vector1[x]=VectorAordenar[x];
@@ -82,46 +84,49 @@ void Menu(){
     printf("%s","-s : selection sort\n");
 }
 
-void ExportarCadena(char* cadena,unsigned int longitud ){
+void ExportarCadena(int* Cadena,unsigned int longitud ){
 
+    printf("%s","abrio exportar cadena");
     unsigned int i=0;
-    for(i=0;i<longitud;i=i+1){
-       fputc(cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
+    for(i=0;i<longitud;i=i+1){//ojo
+       fputc(i, stdout);
+       fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
+    }
+     printf("%s","  cerro exportar cadena");
+    printf("%s","\n");
+}
+
+void LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,int* Cadena){
+    if(RutaDeArchivo!=NULL){
+         FILE* ArchivoFisico = fopen(RutaDeArchivo,"r");
+            if(ArchivoFisico==NULL){
+                printf("%s","Archivo fisico null\n");
+                }else{
+                    int c;
+                    c=5;
+                    while(c!=EOF){
+                        c=fgetc(ArchivoFisico);
+                        if(c!=EOF){
+                            *lon=(*lon)+1;
+                            int temp = *lon;
+                            Cadena = (int*)realloc(Cadena,(sizeof(int)) * temp);
+                            Cadena[(*lon)-1]=c;
+                            fputc(Cadena[(*lon)-1], stdout);
+
+                            }
+                    }
+                printf("%s","\n");
+                fclose(ArchivoFisico);
+                if(Cadena==NULL)printf("%s","Cadena NULA!\n");
+                }
     }
 }
 
-char* SubLeer(char* PunteroArutaDeArchivo,unsigned int* lon){
-        FILE* ArchivoFisico = fopen(PunteroArutaDeArchivo,"r");
-            if(ArchivoFisico==NULL){
-                printf("%s","Archivo fisico null\n");
-                return NULL;//archivo no existe
-            }
-        char c;
-        char* CadenaBruta= (char*) malloc(sizeof(char));
-        *lon = 0;//nunca esta de mas asegurarse
-        while(c!=EOF){
-            c=fgetc(ArchivoFisico);
-            *lon=*lon+1;
-            CadenaBruta = (char*)realloc(CadenaBruta,sizeof(char)*(*lon));
-            CadenaBruta[*lon-1]=c;
-            }
-        fclose(ArchivoFisico);
-    return CadenaBruta;
-}
-
-char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int* longitud){
-    char* Cadena=NULL;
-    if(PunteroArutaDeArchivo!=NULL) {Cadena=SubLeer(PunteroArutaDeArchivo,longitud);}
-    return Cadena;
-}
-
 int main(int argc, char *argv[]){
-
-    int ParametroLeido=0;
-    unsigned int longitud=0;
-    unsigned int YaExporto=0;
+    int FlagMergeSort=0;
+    int FlagSelectionSort=0;//por default viene ACTIVADO este
   /* Lista de las opciones cortas válidas */
-    const char* const OpcionesCortas = "hvm:s:" ;
+    const char* const OpcionesCortas = "hvms" ;
 
   /* Una estructura de varios arrays describiendo los valores largos */
   const struct option OpcionesLargas[] =
@@ -135,25 +140,29 @@ int main(int argc, char *argv[]){
     /* Si se ejecuta sin parámetros ni opciones */
   if (argc == 1){Menu();exit(EXIT_SUCCESS);}
 
+  int* Cadena=NULL;
+
+  unsigned int LongitudCadenaAexportar=0;
+
   while (1){
-      int FlagMergeSort=0;
-      int FlagSelectionSort=0;
+      int ParametroLeido;
       /* Llamamos a la función getopt */
       ParametroLeido = getopt_long (argc, argv, OpcionesCortas, OpcionesLargas, NULL);
-      char* Ruta= optarg;//optarg es como una variable global que viene
+      //char* Ruta= optarg;//optarg es como una variable global que viene
         //con la libreria getopt.h y que modifica el metodo getopt.Apunta al argumento de un parametro ("-x:<arg>").
         //LOGICA por si son varios archivos va aca.
 
-      if (ParametroLeido == -1 && (YaExporto)){
+      if (ParametroLeido == -1){
+          if( FlagMergeSort && FlagSelectionSort){
+              FlagMergeSort=0;
+              FlagSelectionSort=0;
+              printf("%s","Opcion no valida.Tipee -h o --help y pruebe de vuelta\n");
+              exit(EXIT_SUCCESS);
+          }
           break; /* No hay más opciones. Rompemos el bucle */
-          }else{
-            printf("%s","argv[1]=");
-              printf("%s", argv[1]);
-            printf("%s","\n");
           }
 
-      switch (ParametroLeido)
-      {
+      switch (ParametroLeido){
           case 'h' : /* -h o --help */
               Menu();
               exit(EXIT_SUCCESS);
@@ -164,11 +173,11 @@ int main(int argc, char *argv[]){
               break;
 
           case 'm' :
-              FlagMergeSort=1;
+          FlagMergeSort=1;
               break;
 
           case 's' :
-            FlagSelectionSort=1;
+          FlagSelectionSort=1;
               break;
 
           case '?' : /* opción no valida */
@@ -176,31 +185,40 @@ int main(int argc, char *argv[]){
               exit(EXIT_SUCCESS);
 
           case -1 :
-            FlagMergeSort=1;
-            YaExporto=1;
-            Ruta=argv[1];//ojo con esto
-            printf("%s","YaExporto=1\n");
               break;
 
           default :
               break;
-	  }
-    if(FlagMergeSort  ^ FlagSelectionSort){
-        char* Cadena = LeerArchivoDeCaracteres(Ruta,&longitud);
-        if(Cadena!=NULL){
-
-            printf("%s","Cadena NO nula\n");
-
-            if(FlagMergeSort)MergeSort(Cadena,longitud);
-
-            if(FlagSelectionSort){SelectionSort(Cadena,longitud);}
-
-            ExportarCadena(Cadena,longitud);
-
-            }else{
-                printf("%s","No existe el archivo.\n");
-                }
         }
+  }//se procesaron todos los parametros
+
+    while (optind < argc){//optind es variable global usada por libreria getopt
+
+        printf("%d",optind);
+        printf("%s","\n");
+        printf("%s",argv[optind]);
+        printf("%s","\n");
+        LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
+        optind=optind+1;
+        //argv es donde estan las supuestas"rutas" de los archivos a leer
+        }
+        printf("%s","Longitud de la cadena=");
+        printf("%d",LongitudCadenaAexportar);
+        printf("%s"," .");
+        printf("%s","----------------a--------------\n");
+
+        if(Cadena!=NULL)printf("%s","Cadena es distinto de null \n");
+        ExportarCadena(Cadena ,LongitudCadenaAexportar);
+        printf("%s","\n");
+        printf("%s","\n");
+
+    //se leyeron todos los argumentos del programa
+
+    if( LongitudCadenaAexportar!=0 ){//por claridad, preferi dejarlo asi
+        if( FlagMergeSort)MergeSort(Cadena,LongitudCadenaAexportar);
+        if( FlagSelectionSort)SelectionSort(Cadena,LongitudCadenaAexportar);
+        if(FlagMergeSort==0 && FlagSelectionSort==0)SelectionSort(Cadena,LongitudCadenaAexportar);
+        ExportarCadena(Cadena,LongitudCadenaAexportar);
     }
     return 0;
 }
