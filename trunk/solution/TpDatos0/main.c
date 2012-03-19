@@ -3,10 +3,10 @@
 #include <getopt.h>
 
 
-void SelectionSort(int* Vect, int n){
+void SelectionSort(char* Vect, int n){
     if(n>1){
         int minimo=0,i,j;
-        int swap;
+        char swap;
         for(i=0 ; i<n-1 ; i++)
         {
             minimo=i;
@@ -20,7 +20,7 @@ void SelectionSort(int* Vect, int n){
         }
 }
 
-void Merge(int arreglo1[], int n1, int arreglo2[], int n2, int arreglo3[]){
+void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[]){
     //posicion dentro del array
     int x1=0, x2=0, x3=0;
 
@@ -46,9 +46,9 @@ void Merge(int arreglo1[], int n1, int arreglo2[], int n2, int arreglo3[]){
     }
 }
 
-void MergeSort(int VectorAordenar[], int n){
+void MergeSort(char VectorAordenar[], int n){
 
-    int *vector1, *vector2;
+    char *vector1, *vector2;
     int n1, n2,x,y;
     if (n>1)
     {
@@ -60,8 +60,8 @@ void MergeSort(int VectorAordenar[], int n){
             n1=(int) n / 2;n2=n1+1;
         }
         //pido espacio para los 2 vectores, guardo punteros a esas posiciones de memoria
-        vector1=(int *) malloc(sizeof(int)*n1);
-        vector2=(int *) malloc(sizeof(int)*n2);
+        vector1=(char *) malloc(sizeof(char)*n1);
+        vector2=(char *) malloc(sizeof(char)*n2);
         //cargo mis 2 vectores, cada uno con la "mitad" de los datos del vector Original
         for(x=0;x<n1;x++)
             vector1[x]=VectorAordenar[x];
@@ -84,7 +84,7 @@ void Menu(){
     printf("%s","-s : selection sort\n");
 }
 
-void ExportarCadena(int* Cadena,unsigned int longitud ){
+void ExportarCadena(char* Cadena,unsigned int longitud ){
 
     printf("%s","abrio exportar cadena");
     unsigned int i=0;
@@ -95,20 +95,20 @@ void ExportarCadena(int* Cadena,unsigned int longitud ){
     printf("%s","\n");
 }
 
-void LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,int* Cadena){
+void LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena){
     if(RutaDeArchivo!=NULL){
          FILE* ArchivoFisico = fopen(RutaDeArchivo,"r");
             if(ArchivoFisico==NULL){
                 printf("%s","Archivo fisico null\n");
                 }else{
-                    int c;
+                    char c;
                     c=5;
                     while(c!=EOF){
                         c=fgetc(ArchivoFisico);
                         if(c!=EOF){
                             *lon=(*lon)+1;
                             int temp = *lon;
-                            Cadena = (int*)realloc(Cadena,(sizeof(int)) * temp);
+                            Cadena = (char*)realloc(Cadena,(sizeof(char)) * temp);
                             Cadena[(*lon)-1]=c;
                             fputc(Cadena[(*lon)-1], stdout);
 
@@ -139,7 +139,7 @@ int main(int argc, char *argv[]){
     /* Si se ejecuta sin parámetros ni opciones */
   if (argc == 1){Menu();exit(EXIT_SUCCESS);}
 
-  int* Cadena=(int*) malloc(sizeof(int));//importante
+  char* Cadena=(char*) malloc(sizeof(char));//importante
 
   unsigned int LongitudCadenaAexportar=0;
 
@@ -204,7 +204,8 @@ int main(int argc, char *argv[]){
         printf("%s","Longitud de la cadena=");
         printf("%d",LongitudCadenaAexportar);
         printf("%s"," .");
-        printf("%s","----------------a--------------\n");
+        printf("%s","\n");
+        printf("%s","------------------------------\n");
 
         if(Cadena!=NULL)printf("%s","Cadena es distinto de null \n");
         ExportarCadena(Cadena ,LongitudCadenaAexportar);
