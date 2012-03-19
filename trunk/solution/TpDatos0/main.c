@@ -18,9 +18,7 @@ void SelectionSort(char* Vect, int n){
    }
 }
 
-void MergeSort(char VectorAordenar[], int n){
-    void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[])
-{
+void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[]){
     //posicion dentro del array
     int x1=0, x2=0, x3=0;
 
@@ -45,6 +43,9 @@ void MergeSort(char VectorAordenar[], int n){
         x3++;
     }
 }
+
+void MergeSort(char VectorAordenar[], int n){
+
     char *vector1, *vector2;
     int n1, n2,x,y;
     if (n>1)
@@ -89,8 +90,7 @@ void ExportarCadena(char* cadena,unsigned int longitud ){
     }
 }
 
-char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int longitud){
-    char* SubLeer(char* PunteroArutaDeArchivo,unsigned int longitud){
+char* SubLeer(char* PunteroArutaDeArchivo,unsigned int longitud){
         FILE* ArchivoFisico = fopen(PunteroArutaDeArchivo,"r");
             if(ArchivoFisico==NULL)return NULL;//archivo no existe
         char c;
@@ -104,18 +104,18 @@ char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int longitud)
             }
         fclose(ArchivoFisico);
     return CadenaBruta;
-        }
+}
 
+char* LeerArchivoDeCaracteres(char* PunteroArutaDeArchivo,unsigned int& longitud){
     char* Cadena=NULL;
     if(PunteroArutaDeArchivo!=NULL) {Cadena=SubLeer(PunteroArutaDeArchivo,longitud);}
     return Cadena;
 }
+
 int main(int argc, char *argv[]){
 
     int ParametroLeido=0;
-
     int longitud=0;
-
   /* Lista de las opciones cortas válidas */
   const char* const OpcionesCortas = "hvm:s:" ;
 
@@ -176,6 +176,9 @@ int main(int argc, char *argv[]){
         //LOGICA por si son varios archivos va aca.
         char* Cadena = LeerArchivoDeCaracteres(Ruta,longitud);
         if(Cadena!=NULL){
+
+            printf("%s","Cadena leida desde el archivo no es NULL");
+
             if(FlagMergeSort)MergeSort(Cadena,longitud);
             if(FlagSelectionSort)SelectionSort(Cadena,longitud);
             ExportarCadena(Cadena,longitud);
