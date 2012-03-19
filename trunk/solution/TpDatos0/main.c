@@ -140,7 +140,7 @@ int main(int argc, char *argv[]){
     /* Si se ejecuta sin parámetros ni opciones */
   if (argc == 1){Menu();exit(EXIT_SUCCESS);}
 
-  int* Cadena=NULL;
+  int* Cadena=(int*) malloc(sizeof(int));
 
   unsigned int LongitudCadenaAexportar=0;
 
