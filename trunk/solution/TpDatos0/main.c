@@ -87,10 +87,11 @@ void Menu(){
 void ExportarCadena(char* Cadena,unsigned int longitud ){
 
     printf("%s","Empieza Exportar cadena.\n");
-    unsigned int i=0;
-    for(i=0;i<longitud;i=i+1){
-       fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
-    }
+  //  unsigned int i=0;
+   // for(i=0;i<longitud;i=i+1){
+     //  fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
+   printf("%s",Cadena);
+   // }
      printf("%s","Termino de exportar cadena.\n");
 }
 
@@ -106,14 +107,11 @@ void LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena)
                         c=fgetc(ArchivoFisico);
                         if(c!=EOF){
                             *lon=(*lon)+1;
-                            int temp = *lon;
-                            Cadena = (char*)realloc(Cadena,(sizeof(char)) * temp);
+                            Cadena = (char*)realloc(Cadena,(sizeof(char)) * (*lon));
                             Cadena[(*lon)-1]=c;
-                            fputc(Cadena[(*lon)-1], stdout);
-
                             }
                     }
-                printf("%s","\n");
+                    *lon=*lon-1;//leo uno de mas
                 fclose(ArchivoFisico);
                 if(Cadena==NULL)printf("%s","Cadena NULA!\n");
                 }
@@ -205,8 +203,9 @@ int main(int argc, char *argv[]){
         printf("%s"," .\n");
         printf("%s","------------------------------\n");
 
-        if(Cadena!=NULL)printf("%s","Cadena es distinto de null\n");
+        printf("%s","Antes de ordenar, almacenado en memoria: \n");
         ExportarCadena(Cadena ,LongitudCadenaAexportar);
+        printf("%s","------------------------------\n");
 
     //se leyeron todos los argumentos del programa
 
