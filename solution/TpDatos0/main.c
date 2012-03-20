@@ -86,12 +86,12 @@ void Menu(){
 
 void ExportarCadena(char* Cadena,unsigned int longitud ){
 
-    printf("%s","Empieza Exportar cadena.\n");
+    //printf("%s","Empieza Exportar cadena.\n");
     unsigned int i=0;
     for(i=0;i<longitud;i=i+1)
      fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
-   printf("%s","\n");
-     printf("%s","Termino de exportar cadena.\n");
+    //  printf("%s","\n");
+  //   printf("%s","Termino de exportar cadena.\n");
 }
 
 char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena){
@@ -112,7 +112,7 @@ char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena
                     }
                     *lon=*lon-1;//leo uno de mas
                 fclose(ArchivoFisico);
-                if(Cadena==NULL)printf("%s","Cadena NULA!\n");
+              //  if(Cadena==NULL)printf("%s","Cadena NULA!\n");
             }
     }
     return Cadena;
@@ -190,22 +190,22 @@ int main(int argc, char *argv[]){
 
     while (optind < argc){//optind es variable global usada por libreria getopt
 
-        printf("%d",optind);
-        printf("%s","\n");
-        printf("%s",argv[optind]);
-        printf("%s","\n");
+      //  printf("%d",optind);
+       // printf("%s","\n");
+      //  printf("%s",argv[optind]);
+      //  printf("%s","\n");
         Cadena=LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
         optind=optind+1;
         //argv es donde estan las supuestas"rutas" de los archivos a leer
         }
-        printf("%s","Longitud de la cadena=");
-        printf("%d",LongitudCadenaAexportar);
-        printf("%s"," .\n");
-        printf("%s","------------------------------\n");
+       // printf("%s","Longitud de la cadena=");
+      //  printf("%d",LongitudCadenaAexportar);
+      //  printf("%s"," .\n");
+       // printf("%s","------------------------------\n");
 
-        printf("%s","Antes de ordenar, almacenado en memoria: \n");
-        ExportarCadena(Cadena ,LongitudCadenaAexportar);
-        printf("%s","------------------------------\n");
+       // printf("%s","Antes de ordenar, almacenado en memoria: \n");
+       // ExportarCadena(Cadena ,LongitudCadenaAexportar);
+       // printf("%s","------------------------------\n");
 
     //se leyeron todos los argumentos del programa
 
