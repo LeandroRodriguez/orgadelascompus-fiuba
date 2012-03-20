@@ -87,11 +87,10 @@ void Menu(){
 void ExportarCadena(char* Cadena,unsigned int longitud ){
 
     printf("%s","Empieza Exportar cadena.\n");
-  //  unsigned int i=0;
-   // for(i=0;i<longitud;i=i+1){
-     //  fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
-   printf("%s",Cadena);
-   // }
+    unsigned int i=0;
+    for(i=0;i<longitud;i=i+1)
+     fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
+   printf("%s","\n");
      printf("%s","Termino de exportar cadena.\n");
 }
 
@@ -137,7 +136,7 @@ int main(int argc, char *argv[]){
     /* Si se ejecuta sin parámetros ni opciones */
   if (argc == 1){Menu();exit(EXIT_SUCCESS);}
 
-  char* Cadena=(char*) malloc(sizeof(char));//importante
+  char* Cadena=NULL;
 
   unsigned int LongitudCadenaAexportar=0;
 
@@ -216,5 +215,6 @@ int main(int argc, char *argv[]){
         if(FlagMergeSort==0 && FlagSelectionSort==0)SelectionSort(Cadena,LongitudCadenaAexportar);
         ExportarCadena(Cadena,LongitudCadenaAexportar);
     }
+    free(Cadena);
     return 0;
 }
