@@ -86,13 +86,12 @@ void Menu(){
 
 void ExportarCadena(char* Cadena,unsigned int longitud ){
 
-    printf("%s","abrio exportar cadena");
+    printf("%s","Empieza Exportar cadena.\n");
     unsigned int i=0;
     for(i=0;i<longitud;i=i+1){
        fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
     }
-     printf("%s","  cerro exportar cadena");
-    printf("%s","\n");
+     printf("%s","Termino de exportar cadena.\n");
 }
 
 void LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena){
@@ -203,14 +202,11 @@ int main(int argc, char *argv[]){
         }
         printf("%s","Longitud de la cadena=");
         printf("%d",LongitudCadenaAexportar);
-        printf("%s"," .");
-        printf("%s","\n");
+        printf("%s"," .\n");
         printf("%s","------------------------------\n");
 
-        if(Cadena!=NULL)printf("%s","Cadena es distinto de null \n");
+        if(Cadena!=NULL)printf("%s","Cadena es distinto de null\n");
         ExportarCadena(Cadena ,LongitudCadenaAexportar);
-        printf("%s","\n");
-        printf("%s","\n");
 
     //se leyeron todos los argumentos del programa
 
