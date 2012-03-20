@@ -134,7 +134,7 @@ int main(int argc, char *argv[]){
   };
 
     /* Si se ejecuta sin parámetros ni opciones */
-  if (argc == 1){Menu();exit(EXIT_SUCCESS);}
+  if (argc == 1){printf("%s","-h o --help despliega ayuda\n");;exit(EXIT_SUCCESS);}
 
   char* Cadena=NULL;
 
