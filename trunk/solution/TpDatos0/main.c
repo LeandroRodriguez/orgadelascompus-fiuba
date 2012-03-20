@@ -95,7 +95,7 @@ void ExportarCadena(char* Cadena,unsigned int longitud ){
      printf("%s","Termino de exportar cadena.\n");
 }
 
-void LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena){
+char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena){
     if(RutaDeArchivo!=NULL){
          FILE* ArchivoFisico = fopen(RutaDeArchivo,"r");
             if(ArchivoFisico==NULL){
@@ -114,8 +114,9 @@ void LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena)
                     *lon=*lon-1;//leo uno de mas
                 fclose(ArchivoFisico);
                 if(Cadena==NULL)printf("%s","Cadena NULA!\n");
-                }
+            }
     }
+    return Cadena;
 }
 
 int main(int argc, char *argv[]){
@@ -194,7 +195,7 @@ int main(int argc, char *argv[]){
         printf("%s","\n");
         printf("%s",argv[optind]);
         printf("%s","\n");
-        LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
+        Cadena=LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
         optind=optind+1;
         //argv es donde estan las supuestas"rutas" de los archivos a leer
         }
