@@ -119,6 +119,10 @@ char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena
 }
 
 int main(int argc, char *argv[]){
+
+  char* Cadena=NULL;
+  unsigned int LongitudCadenaAexportar=0;
+
     int FlagMergeSort=0;
     int FlagSelectionSort=0;//por default viene ACTIVADO este
   /* Lista de las opciones cortas válidas */
@@ -133,13 +137,6 @@ int main(int argc, char *argv[]){
       { "selection sort",   1,  NULL,  's' }
   };
 
-    /* Si se ejecuta sin parámetros ni opciones */
-  if (argc == 1){printf("%s","-h o --help despliega ayuda\n");;exit(EXIT_SUCCESS);}
-
-  char* Cadena=NULL;
-
-  unsigned int LongitudCadenaAexportar=0;
-
   while (1){
       int ParametroLeido;
       /* Llamamos a la función getopt */
@@ -149,14 +146,15 @@ int main(int argc, char *argv[]){
         //LOGICA por si son varios archivos va aca.
 
       if (ParametroLeido == -1){
-          if( FlagMergeSort && FlagSelectionSort){
+          if( FlagMergeSort && FlagSelectionSort){// no quedan mas parametros, pero se eligieron 2 modos
               FlagMergeSort=0;
               FlagSelectionSort=0;
               printf("%s","Opcion no valida.Tipee -h o --help y pruebe de vuelta\n");
               exit(EXIT_SUCCESS);
-          }
-          break; /* No hay más opciones. Rompemos el bucle */
-          }
+              }else{
+                  break;
+                  }
+            }
 
       switch (ParametroLeido){
           case 'h' : /* -h o --help */
@@ -180,41 +178,36 @@ int main(int argc, char *argv[]){
               printf("%s","Opcion no valida.Tipee -h o --help y pruebe de vuelta\n");
               exit(EXIT_SUCCESS);
 
-          case -1 :
-              break;
-
           default :
               break;
         }
-  }//se procesaron todos los parametros
+  }//se procesaron todos los parametros opciones
 
-    while (optind < argc){//optind es variable global usada por libreria getopt
-
-      //  printf("%d",optind);
-       // printf("%s","\n");
-      //  printf("%s",argv[optind]);
-      //  printf("%s","\n");
+    if (optind <argc){
+        while (optind < argc){//optind es variable global usada por libreria getopt,
+        //Es el indice para verificar parametros que no son opciones
         Cadena=LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
         optind=optind+1;
         //argv es donde estan las supuestas"rutas" de los archivos a leer
         }
-       // printf("%s","Longitud de la cadena=");
-      //  printf("%d",LongitudCadenaAexportar);
-      //  printf("%s"," .\n");
-       // printf("%s","------------------------------\n");
-
-       // printf("%s","Antes de ordenar, almacenado en memoria: \n");
-       // ExportarCadena(Cadena ,LongitudCadenaAexportar);
-       // printf("%s","------------------------------\n");
-
-    //se leyeron todos los argumentos del programa
+        //se leyeron todos los parametros NO opciones
+        }else{
+        size_t TamInicial=sizeof(char)*100;
+        Cadena = (char *) malloc (TamInicial);
+        LongitudCadenaAexportar = getline (&Cadena, &TamInicial, stdin);
+        if ( (LongitudCadenaAexportar==0) || (*Cadena=='\n')){
+            printf("%s","-h o --help despliega ayuda\n");
+            LongitudCadenaAexportar=0;//la cadena es borrada mas abajo
+          }
+    }
 
     if( LongitudCadenaAexportar!=0 ){//por claridad, preferi dejarlo asi
         if( FlagMergeSort)MergeSort(Cadena,LongitudCadenaAexportar);
         if( FlagSelectionSort)SelectionSort(Cadena,LongitudCadenaAexportar);
-        if(FlagMergeSort==0 && FlagSelectionSort==0)SelectionSort(Cadena,LongitudCadenaAexportar);
+        if(FlagMergeSort==0 && FlagSelectionSort==0)SelectionSort(Cadena,LongitudCadenaAexportar);//busqueda default
         ExportarCadena(Cadena,LongitudCadenaAexportar);
-    }
-    free(Cadena);
+        }
+        free(Cadena);
+        Cadena=NULL;
     return 0;
 }
