@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include<string.h>
 
 
 void SelectionSort(char* Vect, int n){
@@ -82,16 +83,16 @@ void Menu(){
     printf("%s","-v :  version\n");
     printf("%s","-m :  merge sort\n");
     printf("%s","-s : selection sort\n");
+    printf("%s","Si se ejecuta el programa sin especificar ninguna cadena");
+    printf("%s","se puede ingresar luego, usando el teclado. Presionar Control+D para cerrar.\n");
 }
 
 void ExportarCadena(char* Cadena,unsigned int longitud ){
 
-    //printf("%s","Empieza Exportar cadena.\n");
     unsigned int i=0;
     for(i=0;i<longitud;i=i+1)
      fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
-    //  printf("%s","\n");
-  //   printf("%s","Termino de exportar cadena.\n");
+     printf("%s","\n");
 }
 
 char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena){
@@ -100,19 +101,38 @@ char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena
             if(ArchivoFisico==NULL){
                 printf("%s","Archivo fisico null\n");
                 }else{
-                    char c;
-                    c=5;
-                    while(c!=EOF){
-                        c=fgetc(ArchivoFisico);
-                        if(c!=EOF){
-                            *lon=(*lon)+1;
-                            Cadena = (char*)realloc(Cadena,(sizeof(char)) * (*lon));
-                            Cadena[(*lon)-1]=c;
-                            }
-                    }
-                    *lon=*lon-1;//leo uno de mas
-                fclose(ArchivoFisico);
-              //  if(Cadena==NULL)printf("%s","Cadena NULA!\n");
+
+                    unsigned int LongTemp =0;
+                    unsigned int CantidadAleerPorPasada=5;
+                    unsigned int CantidadDeLeidos= CantidadAleerPorPasada+1;//asi entra al while
+                    char* LecturaTemporal=(char*) malloc(sizeof(char) * CantidadAleerPorPasada);
+                    char* CadenaTemporal= NULL;
+
+                    while( !(CantidadDeLeidos<CantidadAleerPorPasada)){
+                            CantidadDeLeidos=fread(LecturaTemporal,sizeof(char), CantidadAleerPorPasada, ArchivoFisico);
+                            //printf("%s","Leyo: ");
+                            //printf("%d",CantidadDeLeidos);
+                            //printf("%s"," char de ");
+                            //printf("%s\n",RutaDeArchivo);
+                            LongTemp=LongTemp+CantidadDeLeidos;
+                            CadenaTemporal = (char*)realloc(CadenaTemporal,(sizeof(char)*LongTemp));
+                            CadenaTemporal[LongTemp-CantidadDeLeidos]='\0';
+                            strcat(CadenaTemporal,LecturaTemporal);
+                    }//al salir del while lei todo el archivo, y este esta en CadenaTemporal
+                    *lon=*lon+LongTemp;
+                    Cadena = (char*) realloc(Cadena,sizeof(char) * (*lon));
+                    Cadena[(*lon-LongTemp)]='\0';
+                    strcat(Cadena,CadenaTemporal);
+                    *lon=*lon-1;
+                    //printf("%s","Longitud: ");
+                    //printf("%d\n",*lon);
+                    //printf("%s\n","---------------");
+                    fclose(ArchivoFisico);
+                    free(CadenaTemporal);
+                    free(LecturaTemporal);
+                    CadenaTemporal=NULL;
+                    LecturaTemporal=NULL;
+                    //printf("%s\n","Termino de leer");
             }
     }
     return Cadena;
@@ -183,23 +203,22 @@ int main(int argc, char *argv[]){
         }
   }//se procesaron todos los parametros opciones
 
-    if (optind <argc){
+    if (optind < argc){
+
         while (optind < argc){//optind es variable global usada por libreria getopt,
         //Es el indice para verificar parametros que no son opciones
-        Cadena=LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
-        optind=optind+1;
+            Cadena=LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
+            optind=optind+1;
         //argv es donde estan las supuestas"rutas" de los archivos a leer
         }
         //se leyeron todos los parametros NO opciones
         }else{
-        size_t TamInicial=sizeof(char)*100;
+        int cantidad=10;
+        size_t TamInicial=sizeof(char)*cantidad;
         Cadena = (char *) malloc (TamInicial);
         LongitudCadenaAexportar = getline (&Cadena, &TamInicial, stdin);
-        if ( (LongitudCadenaAexportar==0) || (*Cadena=='\n')){
-            printf("%s","-h o --help despliega ayuda\n");
-            LongitudCadenaAexportar=0;//la cadena es borrada mas abajo
-          }
-    }
+        LongitudCadenaAexportar=LongitudCadenaAexportar-1;//saco eof
+         }
 
     if( LongitudCadenaAexportar!=0 ){//por claridad, preferi dejarlo asi
         if( FlagMergeSort)MergeSort(Cadena,LongitudCadenaAexportar);
