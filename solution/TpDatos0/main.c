@@ -77,13 +77,6 @@ void MergeSort(char VectorAordenar[], int n){
     }
 }
 
-void BorrarFinDeLinea(char LastChar,unsigned int* longitud){
-
-    if(LastChar==10){//codigo ascii del ULTIMO /n
-        *longitud=*longitud-1;
-        }
-    }
-
 void Menu(){
     printf("%s","-h :  ayuda\n");
     printf("%s","-v :  version\n");
@@ -112,27 +105,30 @@ char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena
                     unsigned int CantidadAleerPorPasada=5;
                     unsigned int CantidadDeLeidos= CantidadAleerPorPasada+1;//asi entra al while
                     char* LecturaTemporal=(char*) malloc(sizeof(char) * CantidadAleerPorPasada);
+                    LecturaTemporal[0]='\0';
                     char* CadenaTemporal= NULL;
 
                     while( !(CantidadDeLeidos<CantidadAleerPorPasada)){
                             CantidadDeLeidos=fread(LecturaTemporal,sizeof(char), CantidadAleerPorPasada, ArchivoFisico);
-                            //printf("%s","Leyo: ");
-                            //printf("%d",CantidadDeLeidos);
-                            //printf("%s"," char de ");
-                            //printf("%s\n",RutaDeArchivo);
+                            if ( CantidadDeLeidos==0 )break;
+                            printf("%s","Leyo: ");
+                            printf("%d",CantidadDeLeidos);
+                            printf("%s"," char de ");
+                            printf("%s\n",RutaDeArchivo);
                             LongTemp=LongTemp+CantidadDeLeidos;
                             CadenaTemporal = (char*)realloc(CadenaTemporal,(sizeof(char)*LongTemp));
                             CadenaTemporal[LongTemp-CantidadDeLeidos]='\0';
                             strcat(CadenaTemporal,LecturaTemporal);
                     }//al salir del while lei todo el archivo, y este esta en CadenaTemporal
+
                     *lon=*lon+LongTemp;
                     Cadena = (char*) realloc(Cadena,sizeof(char) * (*lon));
                     Cadena[(*lon-LongTemp)]='\0';
                     strcat(Cadena,CadenaTemporal);
-                    //*lon=*lon-1;
-                    //printf("%s","Longitud: ");
-                    //printf("%d\n",*lon);
-                    //printf("%s\n","---------------");
+
+                    printf("%s","Longitud: ");
+                    printf("%d\n",*lon);
+                    printf("%s\n","---------------");
                     fclose(ArchivoFisico);
                     free(CadenaTemporal);
                     free(LecturaTemporal);
@@ -141,7 +137,6 @@ char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena
                     //printf("%s\n","Termino de leer");
             }
     }
-    BorrarFinDeLinea(Cadena[*lon-1],lon);
     return Cadena;
 }
 
