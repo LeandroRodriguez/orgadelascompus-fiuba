@@ -3,7 +3,6 @@
 #include <getopt.h>
 #include<string.h>
 
-
 void SelectionSort(char* Vect, int n){
     if(n>1){
         int minimo=0,i,j;
@@ -78,13 +77,20 @@ void MergeSort(char VectorAordenar[], int n){
     }
 }
 
+void BorrarFinDeLinea(char LastChar,unsigned int* longitud){
+
+    if(LastChar==10){//codigo ascii del ULTIMO /n
+        *longitud=*longitud-1;
+        }
+    }
+
 void Menu(){
     printf("%s","-h :  ayuda\n");
     printf("%s","-v :  version\n");
     printf("%s","-m :  merge sort\n");
     printf("%s","-s : selection sort\n");
     printf("%s","Si se ejecuta el programa sin especificar ninguna cadena");
-    printf("%s","se puede ingresar luego, usando el teclado. Presionar Control+D para cerrar.\n");
+    printf("%s","se puede ingresar luego, usando el teclado.\n");
 }
 
 void ExportarCadena(char* Cadena,unsigned int longitud ){
@@ -123,7 +129,7 @@ char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena
                     Cadena = (char*) realloc(Cadena,sizeof(char) * (*lon));
                     Cadena[(*lon-LongTemp)]='\0';
                     strcat(Cadena,CadenaTemporal);
-                    *lon=*lon-1;
+                    //*lon=*lon-1;
                     //printf("%s","Longitud: ");
                     //printf("%d\n",*lon);
                     //printf("%s\n","---------------");
@@ -135,6 +141,7 @@ char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena
                     //printf("%s\n","Termino de leer");
             }
     }
+    BorrarFinDeLinea(Cadena[*lon-1],lon);
     return Cadena;
 }
 
@@ -217,8 +224,8 @@ int main(int argc, char *argv[]){
         size_t TamInicial=sizeof(char)*cantidad;
         Cadena = (char *) malloc (TamInicial);
         LongitudCadenaAexportar = getline (&Cadena, &TamInicial, stdin);
-        LongitudCadenaAexportar=LongitudCadenaAexportar-1;//saco eof
          }
+
 
     if( LongitudCadenaAexportar!=0 ){//por claridad, preferi dejarlo asi
         if( FlagMergeSort)MergeSort(Cadena,LongitudCadenaAexportar);
