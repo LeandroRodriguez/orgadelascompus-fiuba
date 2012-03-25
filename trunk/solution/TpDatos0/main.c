@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
-#include<string.h>
+#include <string.h>
 
-void SelectionSort(char* Vect, int n){
+#define CAleerPorPasada 256
+
+void SelectionSort(unsigned char* Vect, int n){
     if(n>1){
         int minimo=0,i,j;
-        char swap;
+        unsigned char swap;
         for(i=0 ; i<n-1 ; i++)
         {
             minimo=i;
@@ -20,7 +22,7 @@ void SelectionSort(char* Vect, int n){
         }
 }
 
-void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[]){
+void Merge(unsigned char arreglo1[], int n1, unsigned char arreglo2[], int n2, unsigned char arreglo3[]){
     //posicion dentro del array
     int x1=0, x2=0, x3=0;
 
@@ -46,9 +48,9 @@ void Merge(char arreglo1[], int n1, char arreglo2[], int n2, char arreglo3[]){
     }
 }
 
-void MergeSort(char VectorAordenar[], int n){
+void MergeSort(unsigned char VectorAordenar[], int n){
 
-    char *vector1, *vector2;
+    unsigned char *vector1, *vector2;
     int n1, n2,x,y;
     if (n>1)
     {
@@ -60,8 +62,8 @@ void MergeSort(char VectorAordenar[], int n){
             n1=(int) n / 2;n2=n1+1;
         }
         //pido espacio para los 2 vectores, guardo punteros a esas posiciones de memoria
-        vector1=(char *) malloc(sizeof(char)*n1);
-        vector2=(char *) malloc(sizeof(char)*n2);
+        vector1=(unsigned char *) malloc(sizeof(unsigned char)*n1);
+        vector2=(unsigned char *) malloc(sizeof(unsigned char)*n2);
         //cargo mis 2 vectores, cada uno con la "mitad" de los datos del vector Original
         for(x=0;x<n1;x++)
             vector1[x]=VectorAordenar[x];
@@ -86,63 +88,57 @@ void Menu(){
     printf("%s","se puede ingresar luego, usando el teclado.\n");
 }
 
-void ExportarCadena(char* Cadena,unsigned int longitud ){
-
+void ExportarCadena(unsigned char* Cadena,unsigned int longitud ){
     unsigned int i=0;
-    for(i=0;i<longitud;i=i+1)
-     fputc(Cadena[i], stdout); // puede salir por consola o a archivo, segun a donde se redireccione desde afuera.
-     printf("%s","\n");
+    for (i = 0; i < longitud; i++)
+        printf ("%c", Cadena[i]);
+    printf ("\n");
 }
 
-char* LeerArchivoDeCaracteres(char* RutaDeArchivo,unsigned int* lon,char* Cadena){
-    if(RutaDeArchivo!=NULL){
-         FILE* ArchivoFisico = fopen(RutaDeArchivo,"r");
-            if(ArchivoFisico==NULL){
-                printf("%s","Archivo fisico null\n");
-                }else{
+unsigned char* LeerArchivoDeCaracteres(char* RutaArchivo,unsigned int* LongitudTotalDelArchivo){
 
-                    unsigned int LongTemp =0;
-                    unsigned int CantidadAleerPorPasada=5;
-                    unsigned int CantidadDeLeidos= CantidadAleerPorPasada+1;//asi entra al while
-                    char* LecturaTemporal=(char*) malloc(sizeof(char) * CantidadAleerPorPasada);
-                    LecturaTemporal[0]='\0';
-                    char* CadenaTemporal= NULL;
+    if ( RutaArchivo==NULL )return NULL;
 
-                    while( !(CantidadDeLeidos<CantidadAleerPorPasada)){
-                            CantidadDeLeidos=fread(LecturaTemporal,sizeof(char), CantidadAleerPorPasada, ArchivoFisico);
-                            if ( CantidadDeLeidos==0 )break;
-                            printf("%s","Leyo: ");
-                            printf("%d",CantidadDeLeidos);
-                            printf("%s"," char de ");
-                            printf("%s\n",RutaDeArchivo);
-                            LongTemp=LongTemp+CantidadDeLeidos;
-                            CadenaTemporal = (char*)realloc(CadenaTemporal,(sizeof(char)*LongTemp));
-                            CadenaTemporal[LongTemp-CantidadDeLeidos]='\0';
-                            strcat(CadenaTemporal,LecturaTemporal);
-                    }//al salir del while lei todo el archivo, y este esta en CadenaTemporal
+    size_t TU = sizeof(unsigned char);
 
-                    *lon=*lon+LongTemp;
-                    Cadena = (char*) realloc(Cadena,sizeof(char) * (*lon));
-                    Cadena[(*lon-LongTemp)]='\0';
-                    strcat(Cadena,CadenaTemporal);
+    FILE* ArchivoFisico = fopen(RutaArchivo,"rb");
+    if (ArchivoFisico==NULL)return NULL;
 
-                    printf("%s","Longitud: ");
-                    printf("%d\n",*lon);
-                    printf("%s\n","---------------");
-                    fclose(ArchivoFisico);
-                    free(CadenaTemporal);
-                    free(LecturaTemporal);
-                    CadenaTemporal=NULL;
-                    LecturaTemporal=NULL;
-                    //printf("%s\n","Termino de leer");
-            }
-    }
-    return Cadena;
+	unsigned int Cleidos = 0, longitud = 0;
+	unsigned int TamBuf = CAleerPorPasada ;
+
+	unsigned char* LecturaTemporal = malloc(TU*CAleerPorPasada);
+
+	unsigned char* CadenaFinal = malloc(TU*CAleerPorPasada);
+
+    unsigned char* Aux = NULL;
+	while( (Cleidos = fread(LecturaTemporal,TU,CAleerPorPasada, ArchivoFisico))!=0 ) {
+		if (longitud+Cleidos >= TamBuf){
+			TamBuf = TamBuf * CAleerPorPasada;
+			Aux = (unsigned char*) realloc(CadenaFinal,TU*TamBuf );
+			if (!Aux){break;}
+			CadenaFinal=Aux;
+		}
+		memcpy( CadenaFinal+longitud , LecturaTemporal,Cleidos);//en un principio longitud esta en 0
+		// es como pasarle el puntero a stream, simplemente
+		longitud = longitud + Cleidos;// la siguiente vez coloca las cosas desde aca.
+
+		//http://stackoverflow.com/questions/2939091/realloc-invalid-next-size
+	}
+
+	free(LecturaTemporal);
+	Aux = realloc(CadenaFinal, TU* longitud);//lo achica, sacandole las espacios de mas
+
+	if (!Aux){
+	    CadenaFinal=Aux;
+	    }
+	*LongitudTotalDelArchivo=longitud;
+	fclose(ArchivoFisico);
+	return CadenaFinal;
 }
 
 int main(int argc, char *argv[]){
 
-  char* Cadena=NULL;
   unsigned int LongitudCadenaAexportar=0;
 
     int FlagMergeSort=0;
@@ -165,7 +161,6 @@ int main(int argc, char *argv[]){
       ParametroLeido = getopt_long (argc, argv, OpcionesCortas, OpcionesLargas, NULL);
       //char* Ruta= optarg;//optarg es como una variable global que viene
         //con la libreria getopt.h y que modifica el metodo getopt.Apunta al argumento de un parametro ("-x:<arg>").
-        //LOGICA por si son varios archivos va aca.
 
       if (ParametroLeido == -1){
           if( FlagMergeSort && FlagSelectionSort){// no quedan mas parametros, pero se eligieron 2 modos
@@ -205,30 +200,48 @@ int main(int argc, char *argv[]){
         }
   }//se procesaron todos los parametros opciones
 
-    if (optind < argc){
+    unsigned char* CadenaTotal=malloc(1);
+    unsigned char* Aux=NULL;
 
-        while (optind < argc){//optind es variable global usada por libreria getopt,
-        //Es el indice para verificar parametros que no son opciones
-            Cadena=LeerArchivoDeCaracteres(argv[optind],&LongitudCadenaAexportar,Cadena);
+    //if (optind < argc){
+        while (optind < argc){
+                //char* archivo = malloc(4);
+                  //      archivo[0]='r';
+                  //      archivo[1]='.';
+                  //      archivo[2]='t';
+                  //      archivo[3]='x';
+                  //      archivo[4]='t';
+                  //      archivo[5]='\0';
+            unsigned int LongitudArchivo=0;
+            unsigned char* Cadena = LeerArchivoDeCaracteres(argv[optind],&LongitudArchivo);
+         //   unsigned char* Cadena = LeerArchivoDeCaracteres(archivo,&LongitudArchivo);
             optind=optind+1;
-        //argv es donde estan las supuestas"rutas" de los archivos a leer
-        }
-        //se leyeron todos los parametros NO opciones
-        }else{
-        int cantidad=10;
-        size_t TamInicial=sizeof(char)*cantidad;
-        Cadena = (char *) malloc (TamInicial);
-        LongitudCadenaAexportar = getline (&Cadena, &TamInicial, stdin);
-         }
 
+            if (Cadena!=NULL){
+                //strcat((char*)CadenaTotal,(char*)Cadena);//ESTO es una mierda
+                Aux=realloc( CadenaTotal,LongitudCadenaAexportar);
+                if(!Aux){
+                    CadenaTotal=Aux;
+                }else{
+                    break;
+                    }
+                memcpy( CadenaTotal+LongitudCadenaAexportar, Cadena,LongitudArchivo);
+                LongitudCadenaAexportar=LongitudCadenaAexportar+LongitudArchivo;
+            }
+            }
+         //   }
+
+        //printf("%s\n","Total Leidos: ");
+        //printf("%d\n",LongitudCadenaAexportar);
+        //printf("%s\n","---------------");
 
     if( LongitudCadenaAexportar!=0 ){//por claridad, preferi dejarlo asi
-        if( FlagMergeSort)MergeSort(Cadena,LongitudCadenaAexportar);
-        if( FlagSelectionSort)SelectionSort(Cadena,LongitudCadenaAexportar);
-        if(FlagMergeSort==0 && FlagSelectionSort==0)SelectionSort(Cadena,LongitudCadenaAexportar);//busqueda default
-        ExportarCadena(Cadena,LongitudCadenaAexportar);
-        }
-        free(Cadena);
-        Cadena=NULL;
+        if( FlagMergeSort)MergeSort(CadenaTotal,LongitudCadenaAexportar);
+        if( FlagSelectionSort)SelectionSort(CadenaTotal,LongitudCadenaAexportar);
+        if(FlagMergeSort==0 && FlagSelectionSort==0)SelectionSort(CadenaTotal,LongitudCadenaAexportar);//busqueda default
+        ExportarCadena(CadenaTotal,LongitudCadenaAexportar);
+        free(CadenaTotal);
+        CadenaTotal=NULL;
+    }
     return 0;
 }
