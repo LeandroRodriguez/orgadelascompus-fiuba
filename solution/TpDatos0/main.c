@@ -3,7 +3,7 @@
 #include <getopt.h>
 #include <string.h>
 
-#define CAleerPorPasada 256
+#define CAleerPorPasada 100
 
 void SelectionSort(unsigned char* Vect, int n){
     if(n>1){
@@ -98,23 +98,20 @@ void ExportarCadena(unsigned char* Cadena,unsigned int longitud ){
 unsigned char* LeerArchivoDeCaracteres(char* RutaArchivo,unsigned int* LongitudTotalDelArchivo){
 
     if ( RutaArchivo==NULL )return NULL;
-
     size_t TU = sizeof(unsigned char);
-
     FILE* ArchivoFisico = fopen(RutaArchivo,"rb");
     if (ArchivoFisico==NULL)return NULL;
 
-	unsigned int Cleidos = 0, longitud = 0;
+	unsigned int Cleidos = 0;
+	unsigned int longitud = 0;
 	unsigned int TamBuf = CAleerPorPasada ;
-
 	unsigned char* LecturaTemporal = malloc(TU*CAleerPorPasada);
-
 	unsigned char* CadenaFinal = malloc(TU*CAleerPorPasada);
-
     unsigned char* Aux = NULL;
+
 	while( (Cleidos = fread(LecturaTemporal,TU,CAleerPorPasada, ArchivoFisico))!=0 ) {
 		if (longitud+Cleidos >= TamBuf){
-			TamBuf = TamBuf * CAleerPorPasada;
+			TamBuf = TamBuf * 3;
 			Aux = (unsigned char*) realloc(CadenaFinal,TU*TamBuf );
 			if (!Aux){break;}
 			CadenaFinal=Aux;
@@ -135,6 +132,19 @@ unsigned char* LeerArchivoDeCaracteres(char* RutaArchivo,unsigned int* LongitudT
 	*LongitudTotalDelArchivo=longitud;
 	fclose(ArchivoFisico);
 	return CadenaFinal;
+}
+
+unsigned char* SumarCadenas(unsigned char* V1,unsigned int n1,unsigned char* V2,unsigned int n2){
+	unsigned char* Suma = (unsigned char*) malloc(sizeof(unsigned char)*(n1+n2));
+
+	 int i=0;
+	 for ( i = 0 ; i < n1 ; i++ ) {
+		 Suma[i] = V1[i];
+	 }
+	 for ( i = n1 ; i < (n1 + n2) ; i++ ){
+		 Suma[i] = V2[i-n1];
+	 }
+	 return Suma;
 }
 
 int main(int argc, char *argv[]){
@@ -200,40 +210,36 @@ int main(int argc, char *argv[]){
         }
   }//se procesaron todos los parametros opciones
 
+    unsigned char* Aux=malloc(1);
     unsigned char* CadenaTotal=malloc(1);
-    unsigned char* Aux=NULL;
 
-    //if (optind < argc){
+    if (optind < argc){
         while (optind < argc){
-                //char* archivo = malloc(4);
-                  //      archivo[0]='r';
-                  //      archivo[1]='.';
-                  //      archivo[2]='t';
-                  //      archivo[3]='x';
-                  //      archivo[4]='t';
-                  //      archivo[5]='\0';
             unsigned int LongitudArchivo=0;
             unsigned char* Cadena = LeerArchivoDeCaracteres(argv[optind],&LongitudArchivo);
          //   unsigned char* Cadena = LeerArchivoDeCaracteres(archivo,&LongitudArchivo);
             optind=optind+1;
 
             if (Cadena!=NULL){
-                //strcat((char*)CadenaTotal,(char*)Cadena);//ESTO es una mierda
-                Aux=realloc( CadenaTotal,LongitudCadenaAexportar);
-                if(!Aux){
-                    CadenaTotal=Aux;
-                }else{
-                    break;
-                    }
-                memcpy( CadenaTotal+LongitudCadenaAexportar, Cadena,LongitudArchivo);
-                LongitudCadenaAexportar=LongitudCadenaAexportar+LongitudArchivo;
-            }
-            }
-         //   }
+                Aux=SumarCadenas(CadenaTotal,LongitudCadenaAexportar,Cadena,LongitudArchivo);
 
-        //printf("%s\n","Total Leidos: ");
-        //printf("%d\n",LongitudCadenaAexportar);
-        //printf("%s\n","---------------");
+                if( Aux!=NULL){
+                    CadenaTotal=Aux;
+                    LongitudCadenaAexportar=LongitudCadenaAexportar+LongitudArchivo;
+                    free(Cadena);
+                    Aux=NULL;
+                }
+            }
+        }
+    }else{
+        int c;
+        while (EOF != (c = fgetc(stdin))) {
+         LongitudCadenaAexportar++;
+        }
+
+
+    }
+
 
     if( LongitudCadenaAexportar!=0 ){//por claridad, preferi dejarlo asi
         if( FlagMergeSort)MergeSort(CadenaTotal,LongitudCadenaAexportar);
