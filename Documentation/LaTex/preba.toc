@@ -1,0 +1,4 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}\relax $\@@underline {\hbox {Some Interesting Words}}\mathsurround \z@ $\relax }{3}
+\contentsline {section}{\numberline {2}Good Bye World}{3}
+\contentsline {section}{\numberline {3}\emph {Ecuations Test}}{3}

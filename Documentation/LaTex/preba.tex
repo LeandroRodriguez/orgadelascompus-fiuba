@@ -1,0 +1,78 @@
+% \newpage para arrancar una pagina nueva
+% \mbox y \ fbox para evitar que te corte al medio una palabra que vos querer tenr toda junta
+% \mbox{} se puede usar cuando 2 letras se pegan. entonces lo ponemos entre medio de esas 2 letras
+% The \part command does not influence the numbering sequence of chapters.
+% \footnote{footnote text} para poner notas al pie de la pagina
+% \underline{text}
+% \emph{text} pone en italica
+% \begin{enumerate} o {itemize} y despues listas con \item o {description} y listas con \item[palabra]
+
+
+
+\documentclass[a4paper,11pt, notitlepage]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,spanish]{babel}
+
+
+\pagestyle{plain} %o pagestyle{plain} , valor defecto   {headings}
+% define the title
+\title{TP0 Organización de las Computadoras (66.20)}
+% \author{Rodriguez Genaro, Leandro \and Padron: 92098 \\ 
+\date{}
+
+
+\begin{document}
+% generates the title
+\maketitle
+
+\begin{tabular}{ l l }
+  Rodriguez Genaro, Leandro & Padrón: 92098 \\
+  Reale, Tomas & Padrón: 92... \\
+  Piechotka, Federico & Padrón: 92216 \\
+\end{tabular}
+\\
+\\
+\\
+Fecha: 29/03/2012
+
+%aca vendria a termina la caratulas
+%ver si se puede evitar que cuente en la numeracion
+\newpage
+
+%resumen
+\begin{abstract}
+Vendria a ser el resumen. Vamos a poner un resumen? (no es necesario)
+\end{abstract}
+
+%inserta el indice
+\tableofcontents
+\newpage
+
+\section{\underline{Some Interesting Words}}
+Well, and here begins my lovely article.
+\section{Good Bye World}
+\ldots{} and here it ends.
+
+\section{\emph{Ecuations Test}}
+% Example 1
+\ldots when Einstein introduced his formula
+\begin{equation}
+e = m \cdot c^2 \; ,
+\end{equation}
+which is at the same time the most widely known
+and the least well understood physical formula.
+% Example 2
+\ldots from which follows Kirchhoff’s current law:
+\begin{equation}
+\sum_{k=1}^{n} I_k = 0 \; .
+\end{equation}
+Kirchhoff’s voltage law can be derived \ldots
+% Example 3
+\ldots which has several advantages.
+\begin{equation}
+I_D = I_F - I_R
+\end{equation}
+is the core of a very different transistor model. \ldots
+
+
+\end{document}
