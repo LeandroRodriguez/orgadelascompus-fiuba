@@ -9,15 +9,17 @@
 
 
 
-\documentclass[a4paper,11pt, notitlepage]{article}
+\documentclass[a4paper,10pt, notitlepage]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage[english,spanish]{babel}
 
+\usepackage{graphicx}
 
 \pagestyle{plain} %o pagestyle{plain} , valor defecto   {headings}
 % define the title
-\title{TP0 Organización de las Computadoras (66.20)}
+\title{\textbf{TP0 Organización de las Computadoras (66.20)}}
 % \author{Rodriguez Genaro, Leandro \and Padron: 92098 \\ 
+\author{}
 \date{}
 
 
@@ -25,35 +27,59 @@
 % generates the title
 \maketitle
 
+\begin{center}
+Grupo Nro. X - 1er. Cuatrimestre de 2012                  \\
+66.20 Organización de Computadoras                        \\
+Facultad de Ingeniería, Universidad de Buenos Aires       \\
+\end{center}
+
+% Inclusión de una imagen en formato EPS (Encapsulated Postscript).
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{logo_fiuba.jpg}
+\end{center}
+\end{figure}
+
+\begin{flushleft}
+{\renewcommand{\arraystretch}{2.5}
+\renewcommand{\tabcolsep}{1.2cm}
 \begin{tabular}{ l l }
-  Rodriguez Genaro, Leandro & Padrón: 92098 \\
-  Reale, Tomas & Padrón: 92... \\
-  Piechotka, Federico & Padrón: 92216 \\
-\end{tabular}
-\\
-\\
-\\
-Fecha: 29/03/2012
+  Rodriguez Genaro, Leandro & \textit{Padrón Nro. 92.098} \\
+  \texttt{leandrorodriguezg@yahoo.com.ar} \\
+  \hline
+  Reale, Tomás & \textit{Padrón Nro. 92.255} \\
+  \texttt{loquesea@yahoo.com.ar} \\
+  \hline
+  Piechotka, Federico & \textit{Padrón Nro. 92.216} \\
+  \texttt{loquesea@yahoo.com.ar} \\
+\end{tabular}}
+\end{flushleft}
 
 %aca vendria a termina la caratulas
 %ver si se puede evitar que cuente en la numeracion
+
+% Quita el número en la primer página.
+\thispagestyle{empty}
+
 \newpage
 
 %resumen
 \begin{abstract}
-Vendria a ser el resumen. Vamos a poner un resumen? (no es necesario)
+Vendria a ser el resumen. Vamos a poner un resumen? (parece que es necesario y de menos de 140 palabras)
 \end{abstract}
 
 %inserta el indice
 \tableofcontents
 \newpage
 
-\section{\underline{Some Interesting Words}}
-Well, and here begins my lovely article.
-\section{Good Bye World}
-\ldots{} and here it ends.
+\section{\underline{Introducción}}
+Ponele que aca va una introducción.
+\section{Desarrollo}
+\ldots{} o algo por el estilo.
 
-\section{\emph{Ecuations Test}}
+\section{\emph{Probando el modo ecuaciones}}
+
+\subsection{Ecuación 1}
 % Example 1
 \ldots when Einstein introduced his formula
 \begin{equation}
@@ -61,12 +87,16 @@ e = m \cdot c^2 \; ,
 \end{equation}
 which is at the same time the most widely known
 and the least well understood physical formula.
+
+\subsection{Ecuación 2}
 % Example 2
 \ldots from which follows Kirchhoff’s current law:
 \begin{equation}
 \sum_{k=1}^{n} I_k = 0 \; .
 \end{equation}
 Kirchhoff’s voltage law can be derived \ldots
+
+\subsection{Ecuación 3}
 % Example 3
 \ldots which has several advantages.
 \begin{equation}
@@ -74,5 +104,23 @@ I_D = I_F - I_R
 \end{equation}
 is the core of a very different transistor model. \ldots
 
+
+\section{Conclusiones}
+
+Todo el chamuyo a mandar aca. Cosas como que el merge sort es altamente superior para x casos. Que con archivos enormes paso z cosa.
+Tambien se puede poner algo de latex. Nose, usemos la imaginacion
+
+
+% Citas bibliogr�ficas.
+\begin{thebibliography}{99}
+
+\bibitem{INT06} Intel Technology \& Research, ``Hyper-Threading Technology,'' 2006, http://www.intel.com/technology/hyperthread/.
+
+\bibitem{HEN00} J. L. Hennessy and D. A. Patterson, ``Computer Architecture. A Quantitative
+Approach,'' 3ra Edición, Morgan Kaufmann Publishers, 2000.
+
+\bibitem{LAR92} J. Larus and T. Ball, ``Rewriting Executable Files to Mesure Program Behavior,'' Tech. Report 1083, Univ. of Wisconsin, 1992.
+
+\end{thebibliography}
 
 \end{document}
