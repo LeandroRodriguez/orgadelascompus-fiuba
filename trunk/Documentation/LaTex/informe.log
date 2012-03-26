@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.24)  24 MAR 2012 21:39
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.23)  26 MAR 2012 00:42
 entering extended mode
  %&-line parsing enabled.
 **informe.tex
@@ -78,19 +78,19 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 14.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 16.
+(Font)              <7> on input line 36.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 16.
- [1] [2
+(Font)              <5> on input line 36.
+ [2
 
 ] (./informe.aux) ) 
 Here is how much of TeX's memory you used:
- 1017 strings out of 493848
- 12899 string characters out of 1152823
+ 1018 strings out of 493848
+ 12907 string characters out of 1152823
  65079 words of memory out of 3000000
- 4345 multiletter control sequences out of 15000+50000
+ 4346 multiletter control sequences out of 15000+50000
  9196 words of font info for 32 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  23i,7n,23p,307b,579s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -101,7 +101,7 @@ mf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/f
 onts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
 nts/cm/cmti7.pfb>
-Output written on informe.pdf (3 pages, 93112 bytes).
+Output written on informe.pdf (3 pages, 90634 bytes).
 PDF statistics:
  40 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
