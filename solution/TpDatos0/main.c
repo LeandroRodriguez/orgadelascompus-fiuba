@@ -95,20 +95,14 @@ void ExportarCadena(unsigned char* Cadena,unsigned int longitud ){
     printf ("\n");
 }
 
-unsigned char* LeerArchivoDeCaracteres(char* RutaArchivo,unsigned int* LongitudTotalDelArchivo){
-
-    if ( RutaArchivo==NULL )return NULL;
+unsigned char* SubLeer(FILE* ArchivoFisico,unsigned int* LongitudTotalDelArchivo){
     size_t TU = sizeof(unsigned char);
-    FILE* ArchivoFisico = fopen(RutaArchivo,"rb");
-    if (ArchivoFisico==NULL)return NULL;
-
-	unsigned int Cleidos = 0;
+    unsigned int Cleidos = 0;
 	unsigned int longitud = 0;
 	unsigned int TamBuf = CAleerPorPasada ;
 	unsigned char* LecturaTemporal = malloc(TU*CAleerPorPasada);
 	unsigned char* CadenaFinal = malloc(TU*CAleerPorPasada);
     unsigned char* Aux = NULL;
-
 	while( (Cleidos = fread(LecturaTemporal,TU,CAleerPorPasada, ArchivoFisico))!=0 ) {
 		if (longitud+Cleidos >= TamBuf){
 			TamBuf = TamBuf * 3;
@@ -134,9 +128,18 @@ unsigned char* LeerArchivoDeCaracteres(char* RutaArchivo,unsigned int* LongitudT
 	return CadenaFinal;
 }
 
-unsigned char* SumarCadenas(unsigned char* V1,unsigned int n1,unsigned char* V2,unsigned int n2){
-	unsigned char* Suma = (unsigned char*) malloc(sizeof(unsigned char)*(n1+n2));
+unsigned char* LeerArchivoDeCaracteres(char* RutaArchivo,unsigned int* LongitudTotalDelArchivo){
 
+    if ( RutaArchivo==NULL )return NULL;
+    FILE* ArchivoFisico = fopen(RutaArchivo,"rb");
+    if (ArchivoFisico==NULL)return NULL;
+
+    return SubLeer(ArchivoFisico,LongitudTotalDelArchivo);
+}
+
+unsigned char* SumarCadenas(unsigned char* V1,unsigned int n1,unsigned char* V2,unsigned int n2){
+
+	unsigned char* Suma = (unsigned char*) malloc(sizeof(unsigned char)*(n1+n2));
 	 int i=0;
 	 for ( i = 0 ; i < n1 ; i++ ) {
 		 Suma[i] = V1[i];
@@ -148,8 +151,6 @@ unsigned char* SumarCadenas(unsigned char* V1,unsigned int n1,unsigned char* V2,
 }
 
 int main(int argc, char *argv[]){
-
-  unsigned int LongitudCadenaAexportar=0;
 
     int FlagMergeSort=0;
     int FlagSelectionSort=0;//por default viene ACTIVADO este
@@ -211,13 +212,13 @@ int main(int argc, char *argv[]){
   }//se procesaron todos los parametros opciones
 
     unsigned char* Aux=malloc(1);
-    unsigned char* CadenaTotal=malloc(1);
+    unsigned char* CadenaTotal=NULL;
+    unsigned int LongitudCadenaAexportar=0;
 
     if (optind < argc){
         while (optind < argc){
             unsigned int LongitudArchivo=0;
             unsigned char* Cadena = LeerArchivoDeCaracteres(argv[optind],&LongitudArchivo);
-         //   unsigned char* Cadena = LeerArchivoDeCaracteres(archivo,&LongitudArchivo);
             optind=optind+1;
 
             if (Cadena!=NULL){
@@ -232,13 +233,10 @@ int main(int argc, char *argv[]){
             }
         }
     }else{
-        int c;
-        while (EOF != (c = fgetc(stdin))) {
-         LongitudCadenaAexportar++;
+        CadenaTotal = SubLeer(stdin,&LongitudCadenaAexportar);
         }
 
 
-    }
 
 
     if( LongitudCadenaAexportar!=0 ){//por claridad, preferi dejarlo asi
