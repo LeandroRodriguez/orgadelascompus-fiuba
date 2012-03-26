@@ -1,4 +1,8 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}\relax $\@@underline {\hbox {Some Interesting Words}}\mathsurround \z@ $\relax }{3}
-\contentsline {section}{\numberline {2}Good Bye World}{3}
-\contentsline {section}{\numberline {3}\emph {Ecuations Test}}{3}
+\contentsline {section}{\numberline {1}\relax $\@@underline {\hbox {Introducci\IeC {\'o}n}}\mathsurround \z@ $\relax }{3}
+\contentsline {section}{\numberline {2}Desarrollo}{3}
+\contentsline {section}{\numberline {3}\emph {Probando el modo ecuaciones}}{3}
+\contentsline {subsection}{\numberline {3.1}Ecuaci\IeC {\'o}n 1}{3}
+\contentsline {subsection}{\numberline {3.2}Ecuaci\IeC {\'o}n 2}{3}
+\contentsline {subsection}{\numberline {3.3}Ecuaci\IeC {\'o}n 3}{3}
+\contentsline {section}{\numberline {4}Conclusiones}{3}
