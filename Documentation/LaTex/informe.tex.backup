@@ -185,29 +185,56 @@ se mide la performance de los algoritmos de ordenamiento,lo cual introduce algo 
 \newpage
 
 \section{Profiling con Gprof}
-\subsection{Mediciones de tiempo}
+\subsection{Mejorar el Selection Sort}
 Con lo dicho en los puntos anteriores, vemos que:
 \begin{enumerate} 
  \item {Merge Sort es mucho mas rapido que Selection Sort}
  \item {Para casos muy grandes, no se pueden estimar los tiempos del Selection Sort, ya que da valores cercanos a las horas}
  \item {Para casos muy chicos, los algoritmos se comportan de forma similar}
 \end{enumerate}
-Debido a esto, elegimos un caso medio, donde $N = 10$ . Vamos a usar un vector random y la herramienta Gprof.
-Vale aclarar que para poder usar esta herramienta, tuvimos que haber compilado nuestro programa con el flag -pg .
-Mas adelante se vera en mas profunidad los comandos usados para compilar el codigo source en C .
-\\ El gprof nos entrega un texto. Aqui se reproducen solo las partes importantes.
+Debido a esto, elegimos un caso medio, donde $N = 10$ . Corremos nuestro programa usando un vector random y la herramienta Gprof.
+El metodo seleccionado es el de Selection Sort, ya que es el que queremos analizar.
+Vale aclarar que para poder usar el Gprof, tuvimos que haber compilado nuestro programa con el flag -pg .
+Mas adelante se vera en mas profunidad los comandos usados para compilar el codigo source en C.\\ 
+El gprof nos entrega un texto. Aqui se reproducen solo las partes importantes.
 
 \verbatiminput{ArchivoDeLog.txt}
 
+Se puede ver que practicamente el 100 por ciento del tiempo que se ejecuta el programa, este se encuentra ejecutando la funcion Selection Sort.
+Por ende, el Speed Up Local que apliquemos sobre Selection Sort, se convertiria en el Speed Up Global ( el de todo el programa ).
+Si pudiesemos mejorar la funcion tanto como quisiesemos, el Speed Up seria inifinito.
+La mejor funcion para optimizar seria Merge Sort, y simplemente dejar de usar Selection Sort.
+O, debido a que Selection Sort ocupa menos espacio en memoria que Merge Sort, si uno puede preveer el tamaño del archivo, usar
+Merge Sort para vectores grandes , y Selection Sort para vectores pequeños.
+
+\section{Comandos}
 
 \begin{thebibliography}{9}
 
-	\bibitem{lamport94}
-	  Leslie Lamport,
-	  \emph{\LaTeX: A Document Preparation System}.
-	  Addison Wesley, Massachusetts,
-	  2nd Edition,
-	  1994.
+    \bibitem{lamport94}
+      Tobias Oetiker,
+      \emph{The Not So Short Introduction to \LaTeXe}.
+      USA,
+      Version 5.01,
+      2011.
+
+    \bibitem{lamport94}
+      Merge-sort, \textrm{http://en.wikipedia.org/wiki/Merge\_sort}
+
+    \bibitem{lamport94}
+      Selection-sort, \textrm{http://en.wikipedia.org/wiki/Selection\_sort}
+
+    \bibitem{lamport94}
+      GXemul, \textrm{http://gavare.se/gxemul/}
+
+    \bibitem{lamport94}
+      The NetBSD project, \textup{http://www.netbsd.org/}
+
+    \bibitem{lamport94}
+      time man page, \textrm{http://unixhelp.ed.ac.uk/CGI/man-cgi?time}
+
+    \bibitem{lamport94}
+      GNU gprof, \textrm{http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html} 
 
 \end{thebibliography}
 

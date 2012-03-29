@@ -10,8 +10,10 @@
 
 
 \documentclass[a4paper,10pt, notitlepage]{article}
-\usepackage[utf8x]{inputenc}
-\usepackage[english,spanish]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage[spanish]{babel} 
+\usepackage{listings}
+\usepackage{color} 
 
 \usepackage{graphicx}
 \usepackage{verbatim}
@@ -185,22 +187,49 @@ se mide la performance de los algoritmos de ordenamiento,lo cual introduce algo 
 \newpage
 
 \section{Profiling con Gprof}
-\subsection{Mediciones de tiempo}
+\subsection{Mejorar el Selection Sort}
 Con lo dicho en los puntos anteriores, vemos que:
 \begin{enumerate} 
  \item {Merge Sort es mucho mas rapido que Selection Sort}
  \item {Para casos muy grandes, no se pueden estimar los tiempos del Selection Sort, ya que da valores cercanos a las horas}
  \item {Para casos muy chicos, los algoritmos se comportan de forma similar}
 \end{enumerate}
-Debido a esto, elegimos un caso medio, donde $N = 10$ . Vamos a usar un vector random y la herramienta Gprof.
-Vale aclarar que para poder usar esta herramienta, tuvimos que haber compilado nuestro programa con el flag -pg .
-Mas adelante se vera en mas profunidad los comandos usados para compilar el codigo source en C .
-\\ El gprof nos entrega un texto. Aqui se reproducen solo las partes importantes.
+Debido a esto, elegimos un caso medio, donde $N = 10$ . Corremos nuestro programa usando un vector random y la herramienta Gprof.
+El metodo seleccionado es el de Selection Sort, ya que es el que queremos analizar.
+Vale aclarar que para poder usar el Gprof, tuvimos que haber compilado nuestro programa con el flag -pg .
+Mas adelante se vera en mas profunidad los comandos usados para compilar el codigo source en C.\\ 
+El gprof nos entrega un texto. Aqui se reproducen solo las partes importantes.
 
 \verbatiminput{ArchivoDeLog.txt}
 
-Se puede ver que practicamente el 100 por ciento del tiempo que se ejecuta el programa, este se encuentra ejecutando la funcion Selection Sort
+Se puede ver que practicamente el 100 por ciento del tiempo que se ejecuta el programa, este se encuentra ejecutando la funcion Selection Sort.
+Por ende, el Speed Up Local que apliquemos sobre Selection Sort, se convertiria en el Speed Up Global ( el de todo el programa ).
+Si pudiesemos mejorar la funcion tanto como quisiesemos, el Speed Up seria inifinito.
+La mejor funcion para optimizar seria Merge Sort, y simplemente dejar de usar Selection Sort.
+O, debido a que Selection Sort ocupa menos espacio en memoria que Merge Sort, si uno puede preveer el tamaño del archivo, usar
+Merge Sort para vectores grandes , y Selection Sort para vectores pequeños.
 
+\section{Comandos}
+Para compilar el programa , abrimos una terminal y escribimos:\\
+$gcc -Wall -pg -pedantic main.h$
+Con lo dicho en los puntos anteriores, vemos que:
+\begin{enumerate} 
+ \item gcc : es el compilador de C
+ \item -Wall nos avisa de warnings sencillos de solucionar	
+ \item -pg deja el programa listo para poder ser analizado por el gprof al correrlo
+ \item -pedantic
+
+\end{enumerate}
+
+\section{Codigo fuente}
+\lstinputlisting[language=C]{main.c}
+
+\section{Miscelanea}
+\includegraphics[width=12cm]{Imagenes/gxemul.PNG}
+
+Se utilizo un programa llamado Exterminator que permite correr varias terminales en una sola.
+Esto fue muy practico a la hora de tener que configurar la comunicacion ssh entre nuestra sesion de ubuntu y la maquina virtual.
+En la captura de pantalla vemos como se corria una prueba del programa e imprimia por pantalla los caracteres ordenados.
 
 \begin{thebibliography}{9}
 
@@ -228,6 +257,7 @@ Se puede ver que practicamente el 100 por ciento del tiempo que se ejecuta el pr
 
     \bibitem{lamport94}
       GNU gprof, \textrm{http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html} 
+
 
 \end{thebibliography}
 
