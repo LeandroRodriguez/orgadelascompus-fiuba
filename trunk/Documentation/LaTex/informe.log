@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.23)  29 MAR 2012 00:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.23)  29 MAR 2012 01:21
 entering extended mode
  %&-line parsing enabled.
 **informe.tex
@@ -153,42 +153,91 @@ Overfull \hbox (37.47655pt too wide) in paragraph at lines 46--57
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logo_fiuba.jpg>]
-(/usr/share/texmf-texlive/tex/latex/ucs/data/uni-32.def
+(./informe.toc)
+\tf@toc=\write3
+\openout3 = `informe.toc'.
+
+ [2] (/usr/share/texmf-texlive/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2004/10/17 UCS: Unicode data U+2000..U+20FF
-) [2]
-<Imagenes/MergeSortVectorRandom.PNG, id=20, 716.6775pt x 411.5375pt>
+)
+[3] <Imagenes/MergeSortVectorRandom.PNG, id=23, 716.6775pt x 411.5375pt>
 File: Imagenes/MergeSortVectorRandom.PNG Graphic file (type png)
 
 <use Imagenes/MergeSortVectorRandom.PNG>
-Overfull \hbox (24.88582pt too wide) in paragraph at lines 107--108
- [][] 
+Overfull \hbox (24.88582pt too wide) in paragraph at lines 110--111
+ [] 
  []
 
-[3] [4 <./Imagenes/MergeSortVectorRandom.PNG (PNG copy)>] (./informe.aux) ) 
+<Imagenes/SelectionSortVectorRandom.PNG, id=24, 741.77126pt x 426.59375pt>
+File: Imagenes/SelectionSortVectorRandom.PNG Graphic file (type png)
+
+<use Imagenes/SelectionSortVectorRandom.PNG>
+Overfull \hbox (24.88582pt too wide) in paragraph at lines 116--117
+ [] 
+ []
+
+[4 <./Imagenes/MergeSortVectorRandom.PNG (PNG copy)>]
+<Imagenes/MergeSortOrdenadodecreciente.PNG, id=29, 959.585pt x 396.48125pt>
+File: Imagenes/MergeSortOrdenadodecreciente.PNG Graphic file (type png)
+
+<use Imagenes/MergeSortOrdenadodecreciente.PNG>
+Overfull \hbox (24.88582pt too wide) in paragraph at lines 124--125
+ [] 
+ []
+
+
+<Imagenes/SelectionSortOrdenadodecreciente.PNG, id=30, 954.56625pt x 391.4625pt
+>
+File: Imagenes/SelectionSortOrdenadodecreciente.PNG Graphic file (type png)
+ <use Imagenes/SelectionSortOrdenadodecreciente.PNG>
+Overfull \hbox (24.88582pt too wide) in paragraph at lines 130--131
+ [] 
+ []
+
+<Imagenes/MergeSortOrdenadocreciente.PNG, id=31, 907.39pt x 407.5225pt>
+File: Imagenes/MergeSortOrdenadocreciente.PNG Graphic file (type png)
+
+<use Imagenes/MergeSortOrdenadocreciente.PNG>
+Overfull \hbox (24.88582pt too wide) in paragraph at lines 136--137
+ [] 
+ []
+
+
+<Imagenes/SelectionSortordenadocreciente.PNG, id=32, 836.12375pt x 382.42876pt>
+File: Imagenes/SelectionSortordenadocreciente.PNG Graphic file (type png)
+<use Imagenes/SelectionSortordenadocreciente.PNG>
+Overfull \hbox (24.88582pt too wide) in paragraph at lines 142--143
+ [] 
+ []
+
+[5 <./Imagenes/SelectionSortVectorRandom.PNG (PNG copy)> <./Imagenes/MergeSortO
+rdenadodecreciente.PNG (PNG copy)>] [6 <./Imagenes/SelectionSortOrdenadodecreci
+ente.PNG (PNG copy)> <./Imagenes/MergeSortOrdenadocreciente.PNG (PNG copy)> <./
+Imagenes/SelectionSortordenadocreciente.PNG (PNG copy)>] [7] (./informe.aux) ) 
 Here is how much of TeX's memory you used:
- 2561 strings out of 493848
- 32180 string characters out of 1152823
- 91134 words of memory out of 3000000
- 5838 multiletter control sequences out of 15000+50000
- 10031 words of font info for 35 fonts, out of 3000000 for 9000
+ 2590 strings out of 493848
+ 33293 string characters out of 1152823
+ 90126 words of memory out of 3000000
+ 5859 multiletter control sequences out of 15000+50000
+ 10390 words of font info for 36 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  25i,7n,27p,342b,614s stack positions out of 5000i,500n,10000p,200000b,50000s
-</us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmti7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10
-.pfb>
-Output written on informe.pdf (4 pages, 333706 bytes).
+<
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/typ
+e1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmti7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmt
+t10.pfb>
+Output written on informe.pdf (7 pages, 460537 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
