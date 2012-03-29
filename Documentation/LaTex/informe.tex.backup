@@ -1,32 +1,114 @@
-\documentclass[a4paper,10pt]{report}
-\usepackage[utf8x]{inputenc}
+% \newpage para arrancar una pagina nueva
+% \mbox y \ fbox para evitar que te corte al medio una palabra que vos querer tenr toda junta
+% \mbox{} se puede usar cuando 2 letras se pegan. entonces lo ponemos entre medio de esas 2 letras
+% The \part command does not influence the numbering sequence of chapters.
+% \footnote{footnote text} para poner notas al pie de la pagina
+% \underline{text}
+% \emph{text} pone en italica
+% \begin{enumerate} o {itemize} y despues listas con \item o {description} y listas con \item[palabra]
 
-% Title Page
+
+
+\documentclass[a4paper,10pt, notitlepage]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,spanish]{babel}
+
+\usepackage{graphicx}
+
+\pagestyle{plain} %o pagestyle{plain} , valor defecto   {headings}
+% define the title
+\title{\textbf{TP0 Organización de las Computadoras (66.20)}}
+% \author{Rodriguez Genaro, Leandro \and Padron: 92098 \\ 
+\author{}
+\date{}
+
 
 \begin{document}
-\title{TP0 Organización de las Computadoras (66.20)}
-\author{
-  Rodriguez Genaro, Leandro	Padrón: 92098\\
-  Reale, Tomas			Padrón: .....\\
-  Piechotka, Federico		Padrón: 92216}
-\date{Fecha: 29/03/2012}
-
+% generates the title
 \maketitle
 
+\begin{center}
+Grupo Nro. X - 1er. Cuatrimestre de 2012                  \\
+66.20 Organización de Computadoras                        \\
+Facultad de Ingeniería, Universidad de Buenos Aires       \\
+\end{center}
+
+% Inclusión de una imagen en formato EPS (Encapsulated Postscript).
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{logo_fiuba.jpg}
+\end{center}
+\end{figure}
+
+\begin{flushleft}
+{\renewcommand{\arraystretch}{2.5}
+\renewcommand{\tabcolsep}{1.2cm}
 \begin{tabular}{ l l }
-  Rodriguez Genaro, Leandro & Padrón: 92098 \\
-  Reale, Tomas & Padrón: ..... \\
-  Piechotka, Federico & Padrón: 92216 \\
-\end{tabular}
+  Rodriguez Genaro, Leandro & \textit{Padrón Nro. 92.098} \\
+  \texttt{leandrorodriguezg@yahoo.com.ar} \\
+  \hline
+  Reale, Tomás & \textit{Padrón Nro. 92.255} \\
+  \texttt{tomasreale@gmail.com} \\
+  \hline
+  Piechotka, Federico & \textit{Padrón Nro. 92.216} \\
+  \texttt{f\_piecho@hotmail.com} \\
+  \hline
+\end{tabular}}
+\end{flushleft}
 
+%aca vendria a termina la caratulas
+%ver si se puede evitar que cuente en la numeracion
 
+% Quita el número en la primer página.
+\thispagestyle{empty}
+
+\newpage
+
+\begin{abstract}
+La idea principal de este trabajo practico es aprender a utilizar ciertas herramientas fundamentales
+para el análisis de software. Con tal fin, se implementa un programa simple cuya función es ordenar	
+cadenas de caracteres . Este programa cuenta con 2 algoritmos de ordenamiento 
+(Merge Sort o Seleccion Sort) y cuenta con la posibilidad de escoger 1 de estos enviándole un parámetro ( -m o -s ) a la aplicación.
+Las herramientas de análisis de software a utilizar son:   
+Gxemul (para simular una maquina MIPS usando un SO NetBSD,y checkear portabilidad).
+gprof (herramienta de profiling para ver tiempos de nuestro programa ).
+También se utilizara “time” de la consola de Linux.
+\end{abstract}
 
 \section{Introducción}
-Aca hay que poner la introduccion.
+Con ayuda de los links provistos por la cátedra ( wikipedia ) se programo en el lenguaje C la aplicación antes mencionada, responsable de ordenar cadenas de caracteres, ya sea leyendo los datos de 1 o varios archivos o por consola(lo que seria entrada standar). Todo esto bajo el SO Ubuntu 10.04.
+Además de los algoritmos de ordenamiento, el programa cuenta con funciones para leer y manejar archivos, y un parser para interpretar los argumentos que se le pasan al ejecutarlo por consola.
+El parser de argumentos se implemento usando la útil librería getopt, y para manipular archivos, se siguió lo que dicta la ortodoxia de los manuales que se encuentran dando vuelta por la red.
+Se configuro el gxemul para correr NetBSD sobre una maquina mips, y se lo comunico con nuestro usuario de ubuntu a través de ssh.
+Con el programa ya programado en C, se envió el código fuente a la maquina virtual del gxemul, se compilo por consola (cuidándose de generar el código .s), y se ejecuto allí para poder verificar que efectivamente el programa fuese portable.
 
+\section{\emph{Previo a realizacion de medidas}}
+\subsection{Merge Sort}
+El algoritmo de ordenamiento por mezcla (merge sort en inglés) es un algoritmo de ordenamiento externo estable basado en la técnica divide y vencerás.
+Es de complejidad $O(n*log(n))$,ya sea para el mejor caso, el peor caso, o el caso promedio.
+
+\subsection{Selection Sort}
+El ordenamiento por selección (Selection Sort en inglés) es un algoritmo de ordenamiento que requiere $O(n^2)$ operaciones para ordenar una lista de n elementos.
+Su complejidad no varia para el mejor, el peor, o el caso promedio.
 
 \section{Desarrollo}
-Aca va la informacion principal.
+\subsection{Mediciones de tiempo}
+Siguiendo las instrucciones del tp,se crearon varios archivos de caracteres aleatorios, 
+con un tamaño dado por $Size = 100*2^N , N=0,1,2,3, \dots ,16$
+Antes de empezar a medir, se hicieron 3 copias para cada tamaño.
+Una se dejo tal cual fue creada.Otra se ordeno de menor a mayor.Otra se ordeno de mayor a menor.
+Con esas copias, se procedio a construir tablas del tiempo medido en funcion del tamaño, para cada uno
+de los algoritmos de ordenamiento.
+A continuacion mostramos los graficos obtenidos.
+Esto se ejecutando el programa ya compilado, usando la funcion time de la consola de Ubuntu.
+
+\begin{figure}[p]
+  \centering
+ \includegraphics[width=13cm]{Imagenes/MergeSortVectorRandom.PNG}
+\end{figure}
+
+
+\subsection{Analisis de las mediciones de tiempo}
 
 \subsection{Resultados}
 Una subseccion de la parte principal. Ponele que aca van los resultados de las pruebas
