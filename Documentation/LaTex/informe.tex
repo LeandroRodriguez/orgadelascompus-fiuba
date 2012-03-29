@@ -150,10 +150,10 @@ Los datos se consiguieron ejecutando el programa para todos los distintos archiv
 
 \subsection{Analisis de las mediciones de tiempo}
 Es fácil ver que se verifica lo que se esperaba : que los 2 métodos de ordenamiento mantienen su orden de complejidad independientemente
-de como se encuentra el vector. Es fácil observar también que el Merge Sort es muchísimo mas rápido que el Selection Sort.
-\\Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
-\\Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.
-\\$SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$
+de como se encuentra el vector. Es fácil observar también que el Merge Sort es muchísimo mas rápido que el Selection Sort.\\
+Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
+Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.\\
+$SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$\\
 Vale mencionar que para N chicos, donde los tiempos de ambos métodos son 0 o casi 0, se considera el Speed Up nulo, indicando que los 2 métodos tardaron lo mismo.
 A continuacion, los graficos de los Speed Up para los distintos N, segun la forma en la que se encuentra el vector a ordenar.
 
@@ -199,15 +199,35 @@ Mas adelante se vera en mas profunidad los comandos usados para compilar el codi
 
 \verbatiminput{ArchivoDeLog.txt}
 
+Se puede ver que practicamente el 100 por ciento del tiempo que se ejecuta el programa, este se encuentra ejecutando la funcion Selection Sort
+
 
 \begin{thebibliography}{9}
 
-	\bibitem{lamport94}
-	  Leslie Lamport,
-	  \emph{\LaTeX: A Document Preparation System}.
-	  Addison Wesley, Massachusetts,
-	  2nd Edition,
-	  1994.
+    \bibitem{lamport94}
+      Tobias Oetiker,
+      \emph{The Not So Short Introduction to \LaTeXe}.
+      USA,
+      Version 5.01,
+      2011.
+
+    \bibitem{lamport94}
+      Merge-sort, \textrm{http://en.wikipedia.org/wiki/Merge\_sort}
+
+    \bibitem{lamport94}
+      Selection-sort, \textrm{http://en.wikipedia.org/wiki/Selection\_sort}
+
+    \bibitem{lamport94}
+      GXemul, \textrm{http://gavare.se/gxemul/}
+
+    \bibitem{lamport94}
+      The NetBSD project, \textup{http://www.netbsd.org/}
+
+    \bibitem{lamport94}
+      time man page, \textrm{http://unixhelp.ed.ac.uk/CGI/man-cgi?time}
+
+    \bibitem{lamport94}
+      GNU gprof, \textrm{http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html} 
 
 \end{thebibliography}
 
