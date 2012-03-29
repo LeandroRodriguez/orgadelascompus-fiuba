@@ -1,0 +1,41 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+100.27     30.00    30.00        1    30.00    30.00  SelectionSort
+  0.00     30.00     0.00        1     0.00     0.00  ExportarCadena
+  0.00     30.00     0.00        1     0.00     0.00  LeerArchivoDeCaracteres
+  0.00     30.00     0.00        1     0.00     0.00  SubLeer
+  0.00     30.00     0.00        1     0.00     0.00  SumarCadenas
+
+
+index % time    self  children    called     name
+               30.00    0.00       1/1           main [2]
+[1]    100.0   30.00    0.00       1         SelectionSort [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]    100.0    0.00   30.00                 main [2]
+               30.00    0.00       1/1           SelectionSort [1]
+                0.00    0.00       1/1           LeerArchivoDeCaracteres [4]
+                0.00    0.00       1/1           SumarCadenas [6]
+                0.00    0.00       1/1           ExportarCadena [3]
+-----------------------------------------------
+                0.00    0.00       1/1           main [2]
+[3]      0.0    0.00    0.00       1         ExportarCadena [3]
+-----------------------------------------------
+                0.00    0.00       1/1           main [2]
+[4]      0.0    0.00    0.00       1         LeerArchivoDeCaracteres [4]
+                0.00    0.00       1/1           SubLeer [5]
+-----------------------------------------------
+                0.00    0.00       1/1           LeerArchivoDeCaracteres [4]
+[5]      0.0    0.00    0.00       1         SubLeer [5]
+-----------------------------------------------
+                0.00    0.00       1/1           main [2]
+[6]      0.0    0.00    0.00       1         SumarCadenas [6]
+-----------------------------------------------
+
+Index by function name
+
+   [3] ExportarCadena          [1] SelectionSort           [6] SumarCadenas
+   [4] LeerArchivoDeCaracteres [5] SubLeer
