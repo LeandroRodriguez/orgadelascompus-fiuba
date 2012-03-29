@@ -14,6 +14,7 @@
 \usepackage[english,spanish]{babel}
 
 \usepackage{graphicx}
+\usepackage{verbatim}
 
 \pagestyle{plain} %o pagestyle{plain} , valor defecto   {headings}
 % define the title
@@ -149,10 +150,10 @@ Los datos se consiguieron ejecutando el programa para todos los distintos archiv
 
 \subsection{Analisis de las mediciones de tiempo}
 Es fácil ver que se verifica lo que se esperaba : que los 2 métodos de ordenamiento mantienen su orden de complejidad independientemente
-de como se encuentra el vector. Es fácil observar también que el Merge Sort es muchísimo mas rápido que el Selection Sort.
-\\Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
-\\Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.
-\\$SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$
+de como se encuentra el vector. Es fácil observar también que el Merge Sort es muchísimo mas rápido que el Selection Sort.\\
+Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
+Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.\\
+$SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$\\
 Vale mencionar que para N chicos, donde los tiempos de ambos métodos son 0 o casi 0, se considera el Speed Up nulo, indicando que los 2 métodos tardaron lo mismo.
 A continuacion, los graficos de los Speed Up para los distintos N, segun la forma en la que se encuentra el vector a ordenar.
 
@@ -171,7 +172,7 @@ A continuacion, los graficos de los Speed Up para los distintos N, segun la form
 
 \begin{figure}[!htp]
 \begin{center}
-\includegraphics[width=12cm]{Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png}
+\includegraphics[width=11cm]{Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png}
 \end{center}
 \end{figure} 
 
@@ -179,7 +180,7 @@ A continuacion, los graficos de los Speed Up para los distintos N, segun la form
 
 Para los casos donde $N>12$ , el tiempo del Merge Sort es mas de 2 ordenes de magnitud menor que el de Selection Sort , el Speed Up crece vertiginosamente.
 Se ve que los speed up varian segun los distintos casos. Esto no deberia suceder, y se debe hay otras aplicaciones corriendo mientras
-se mide la performance de los algoritmos de ordenamiento.
+se mide la performance de los algoritmos de ordenamiento,lo cual introduce algo de error en las mediciones.
 
 \newpage
 
@@ -188,9 +189,16 @@ se mide la performance de los algoritmos de ordenamiento.
 Con lo dicho en los puntos anteriores, vemos que:
 \begin{enumerate} 
  \item {Merge Sort es mucho mas rapido que Selection Sort}
- \item {Merge Sort es mucho mas rapido que Selection Sort}
- \item {Merge Sort es mucho mas rapido que Selection Sort}
+ \item {Para casos muy grandes, no se pueden estimar los tiempos del Selection Sort, ya que da valores cercanos a las horas}
+ \item {Para casos muy chicos, los algoritmos se comportan de forma similar}
 \end{enumerate}
+Debido a esto, elegimos un caso medio, donde $N = 10$ . Vamos a usar un vector random y la herramienta Gprof.
+Vale aclarar que para poder usar esta herramienta, tuvimos que haber compilado nuestro programa con el flag -pg .
+Mas adelante se vera en mas profunidad los comandos usados para compilar el codigo source en C .
+\\ El gprof nos entrega un texto. Aqui se reproducen solo las partes importantes.
+
+\verbatiminput{ArchivoDeLog.txt}
+
 
 \begin{thebibliography}{9}
 
