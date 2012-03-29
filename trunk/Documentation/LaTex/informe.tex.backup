@@ -50,7 +50,7 @@ Facultad de Ingeniería, Universidad de Buenos Aires       \\
   Reale, Tomás & \textit{Padrón Nro. 92.255} \\
   \texttt{tomasreale@gmail.com} \\
   \hline
-  Piechotka, Federico & \textit{Padrón Nro. 92.216} \\
+  Piechotka, Federico & \textit{Padrón Nro. 92.126} \\
   \texttt{f\_piecho@hotmail.com} \\
   \hline
 \end{tabular}}
@@ -77,11 +77,12 @@ También se utilizara “time” de la consola de Linux.
 \end{abstract}
 
 \section{Introducción}
-Con ayuda de los links provistos por la cátedra ( wikipedia ) se programo en el lenguaje C la aplicación antes mencionada, responsable de ordenar cadenas de caracteres, ya sea leyendo los datos de 1 o varios archivos o por consola(lo que seria entrada standar). Todo esto bajo el SO Ubuntu 10.04.
-Además de los algoritmos de ordenamiento, el programa cuenta con funciones para leer y manejar archivos, y un parser para interpretar los argumentos que se le pasan al ejecutarlo por consola.
+Con ayuda de los links provistos por la cátedra ( wikipedia ) se programo en el lenguaje C la aplicación antes mencionada, responsable de ordenar cadenas de caracteres, ya sea leyendo los datos de 1 o varios archivos o por consola(lo que seria entrada standar). 
+Todo esto bajo el SO Ubuntu 10.04.
+\\Además de los algoritmos de ordenamiento, el programa cuenta con funciones para leer y manejar archivos, y un parser para interpretar los argumentos que se le pasan al ejecutarlo por consola.
 El parser de argumentos se implemento usando la útil librería getopt, y para manipular archivos, se siguió lo que dicta la ortodoxia de los manuales que se encuentran dando vuelta por la red.
 Se configuro el gxemul para correr NetBSD sobre una maquina mips, y se lo comunico con nuestro usuario de ubuntu a través de ssh.
-Con el programa ya programado en C, se envió el código fuente a la maquina virtual del gxemul, se compilo por consola (cuidándose de generar el código .s), y se ejecuto allí para poder verificar que efectivamente el programa fuese portable.
+\\Con el programa ya programado en C, se envió el código fuente a la maquina virtual del gxemul, se compilo por consola (cuidándose de generar el código .s), y se ejecuto allí para poder verificar que efectivamente el programa fuese portable.
 
 \section{\emph{Previo a realizacion de medidas}}
 \subsection{Merge Sort}
@@ -98,10 +99,10 @@ Su complejidad no varia para el mejor, el peor, o el caso promedio.
 \subsection{Mediciones de tiempo}
 Siguiendo las instrucciones del tp,se crearon varios archivos de caracteres aleatorios, 
 con un tamaño dado por $Size = 100*2^N , N=0,1,2,3, \dots ,16$
-Antes de empezar a medir, se hicieron 3 copias para cada tamaño.
+\\Antes de empezar a medir, se hicieron 3 copias para cada tamaño.
 Una se dejo tal cual fue creada.Otra se ordeno de menor a mayor.Otra se ordeno de mayor a menor.
 Con esas copias, se procedio a construir tablas del tiempo medido en funcion del tamaño, para cada uno
-de los algoritmos de ordenamiento.
+de los algoritmos de ordenamiento.\\
 A continuacion mostramos los graficos obtenidos.
 Los datos se consiguieron ejecutando el programa para todos los distintos archivos,con los 2 metodos
 ,usando la funcion time de la consola de Ubuntu para registrar los tiempos.
@@ -149,11 +150,47 @@ Los datos se consiguieron ejecutando el programa para todos los distintos archiv
 \subsection{Analisis de las mediciones de tiempo}
 Es fácil ver que se verifica lo que se esperaba : que los 2 métodos de ordenamiento mantienen su orden de complejidad independientemente
 de como se encuentra el vector. Es fácil observar también que el Merge Sort es muchísimo mas rápido que el Selection Sort.
-Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
-Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.
+\\Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
+\\Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.
+\\$SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$
 Vale mencionar que para N chicos, donde los tiempos de ambos métodos son 0 o casi 0, se considera el Speed Up nulo, indicando que los 2 métodos tardaron lo mismo.
-$SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$
+A continuacion, los graficos de los Speed Up para los distintos N, segun la forma en la que se encuentra el vector a ordenar.
 
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=12cm]{Imagenes/SpeedUpVectorRandom.png}
+\end{center}
+\end{figure} 
+
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=12cm]{Imagenes/SpeedUpVectorOrdenadoEnFormaDecreciente.png}
+\end{center}
+\end{figure} 
+
+
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=12cm]{Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png}
+\end{center}
+\end{figure} 
+
+\newpage
+
+Para los casos donde $N>12$ , el tiempo del Merge Sort es mas de 2 ordenes de magnitud menor que el de Selection Sort , el Speed Up crece vertiginosamente.
+Se ve que los speed up varian segun los distintos casos. Esto no deberia suceder, y se debe hay otras aplicaciones corriendo mientras
+se mide la performance de los algoritmos de ordenamiento.
+
+\newpage
+
+\section{Profiling con Gprof}
+\subsection{Mediciones de tiempo}
+Con lo dicho en los puntos anteriores, vemos que:
+\begin{enumerate} 
+ \item {Merge Sort es mucho mas rapido que Selection Sort}
+ \item {Merge Sort es mucho mas rapido que Selection Sort}
+ \item {Merge Sort es mucho mas rapido que Selection Sort}
+\end{enumerate}
 
 \begin{thebibliography}{9}
 
