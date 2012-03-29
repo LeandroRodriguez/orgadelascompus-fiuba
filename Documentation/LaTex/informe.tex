@@ -14,6 +14,7 @@
 \usepackage[english,spanish]{babel}
 
 \usepackage{graphicx}
+\usepackage{verbatim}
 
 \pagestyle{plain} %o pagestyle{plain} , valor defecto   {headings}
 % define the title
@@ -171,13 +172,33 @@ A continuacion, los graficos de los Speed Up para los distintos N, segun la form
 
 \begin{figure}[!htp]
 \begin{center}
-\includegraphics[width=12cm]{Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png}
+\includegraphics[width=11cm]{Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png}
 \end{center}
 \end{figure} 
 
-Para los casos donde N>12 , el tiempo del Merge Sort es mas de 2 ordenes de magnitud menor que el de Selection Sort , el Speed Up crece vertiginosamente.
+\newpage
+
+Para los casos donde $N>12$ , el tiempo del Merge Sort es mas de 2 ordenes de magnitud menor que el de Selection Sort , el Speed Up crece vertiginosamente.
 Se ve que los speed up varian segun los distintos casos. Esto no deberia suceder, y se debe hay otras aplicaciones corriendo mientras
-se mide la performance de los algoritmos de ordenamiento.
+se mide la performance de los algoritmos de ordenamiento,lo cual introduce algo de error en las mediciones.
+
+\newpage
+
+\section{Profiling con Gprof}
+\subsection{Mediciones de tiempo}
+Con lo dicho en los puntos anteriores, vemos que:
+\begin{enumerate} 
+ \item {Merge Sort es mucho mas rapido que Selection Sort}
+ \item {Para casos muy grandes, no se pueden estimar los tiempos del Selection Sort, ya que da valores cercanos a las horas}
+ \item {Para casos muy chicos, los algoritmos se comportan de forma similar}
+\end{enumerate}
+Debido a esto, elegimos un caso medio, donde $N = 10$ . Vamos a usar un vector random y la herramienta Gprof.
+Vale aclarar que para poder usar esta herramienta, tuvimos que haber compilado nuestro programa con el flag -pg .
+Mas adelante se vera en mas profunidad los comandos usados para compilar el codigo source en C .
+\\ El gprof nos entrega un texto. Aqui se reproducen solo las partes importantes.
+
+\verbatiminput{ArchivoDeLog.txt}
+
 
 \begin{thebibliography}{9}
 
