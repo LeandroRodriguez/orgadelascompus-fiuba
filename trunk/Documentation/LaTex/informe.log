@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.23)  29 MAR 2012 01:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.23)  29 MAR 2012 03:14
 entering extended mode
  %&-line parsing enabled.
 **informe.tex
@@ -164,80 +164,69 @@ File: uni-32.def 2004/10/17 UCS: Unicode data U+2000..U+20FF
 File: Imagenes/MergeSortVectorRandom.PNG Graphic file (type png)
 
 <use Imagenes/MergeSortVectorRandom.PNG>
-Overfull \hbox (24.88582pt too wide) in paragraph at lines 110--111
- [] 
- []
-
 <Imagenes/SelectionSortVectorRandom.PNG, id=24, 741.77126pt x 426.59375pt>
 File: Imagenes/SelectionSortVectorRandom.PNG Graphic file (type png)
 
-<use Imagenes/SelectionSortVectorRandom.PNG>
-Overfull \hbox (24.88582pt too wide) in paragraph at lines 116--117
- [] 
- []
-
-[4 <./Imagenes/MergeSortVectorRandom.PNG (PNG copy)>]
+<use Imagenes/SelectionSortVectorRandom.PNG> [4 <./Imagenes/MergeSortVectorRand
+om.PNG (PNG copy)> <./Imagenes/SelectionSortVectorRandom.PNG (PNG copy)>]
 <Imagenes/MergeSortOrdenadodecreciente.PNG, id=29, 959.585pt x 396.48125pt>
 File: Imagenes/MergeSortOrdenadodecreciente.PNG Graphic file (type png)
 
 <use Imagenes/MergeSortOrdenadodecreciente.PNG>
-Overfull \hbox (24.88582pt too wide) in paragraph at lines 124--125
- [] 
- []
-
-
 <Imagenes/SelectionSortOrdenadodecreciente.PNG, id=30, 954.56625pt x 391.4625pt
 >
 File: Imagenes/SelectionSortOrdenadodecreciente.PNG Graphic file (type png)
  <use Imagenes/SelectionSortOrdenadodecreciente.PNG>
-Overfull \hbox (24.88582pt too wide) in paragraph at lines 130--131
- [] 
- []
-
 <Imagenes/MergeSortOrdenadocreciente.PNG, id=31, 907.39pt x 407.5225pt>
 File: Imagenes/MergeSortOrdenadocreciente.PNG Graphic file (type png)
 
 <use Imagenes/MergeSortOrdenadocreciente.PNG>
-Overfull \hbox (24.88582pt too wide) in paragraph at lines 136--137
- [] 
- []
-
-
 <Imagenes/SelectionSortordenadocreciente.PNG, id=32, 836.12375pt x 382.42876pt>
 File: Imagenes/SelectionSortordenadocreciente.PNG Graphic file (type png)
-<use Imagenes/SelectionSortordenadocreciente.PNG>
-Overfull \hbox (24.88582pt too wide) in paragraph at lines 142--143
- [] 
- []
+<use Imagenes/SelectionSortordenadocreciente.PNG> [5 <./Imagenes/MergeSortOrden
+adodecreciente.PNG (PNG copy)> <./Imagenes/SelectionSortOrdenadodecreciente.PNG
+ (PNG copy)> <./Imagenes/MergeSortOrdenadocreciente.PNG (PNG copy)>]
+<Imagenes/SpeedUpVectorRandom.png, id=36, 667.74469pt x 246.1697pt>
+File: Imagenes/SpeedUpVectorRandom.png Graphic file (type png)
 
-[5 <./Imagenes/SelectionSortVectorRandom.PNG (PNG copy)> <./Imagenes/MergeSortO
-rdenadodecreciente.PNG (PNG copy)>] [6 <./Imagenes/SelectionSortOrdenadodecreci
-ente.PNG (PNG copy)> <./Imagenes/MergeSortOrdenadocreciente.PNG (PNG copy)> <./
-Imagenes/SelectionSortordenadocreciente.PNG (PNG copy)>] [7] (./informe.aux) ) 
+<use Imagenes/SpeedUpVectorRandom.png>
+<Imagenes/SpeedUpVectorOrdenadoEnFormaDecreciente.png, id=37, 618.81187pt x 223
+.58531pt>
+File: Imagenes/SpeedUpVectorOrdenadoEnFormaDecreciente.png Graphic file (type p
+ng)
+ <use Imagenes/SpeedUpVectorOrdenadoEnFormaDecreciente.png>
+<Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png, id=38, 666.99188pt x 279.2
+9344pt>
+File: Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png Graphic file (type png
+)
+ <use Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png> [6 <./Imagenes/Select
+ionSortordenadocreciente.PNG (PNG copy)> <./Imagenes/SpeedUpVectorRandom.png (P
+NG copy)>] [7 <./Imagenes/SpeedUpVectorOrdenadoEnFormaDecreciente.png (PNG copy
+)> <./Imagenes/SpeedUpVectorOrdenadoEnFormaCreciente.png (PNG copy)>]
+(./informe.aux) ) 
 Here is how much of TeX's memory you used:
- 2590 strings out of 493848
- 33293 string characters out of 1152823
- 90126 words of memory out of 3000000
- 5859 multiletter control sequences out of 15000+50000
+ 2610 strings out of 493848
+ 34048 string characters out of 1152823
+ 91126 words of memory out of 3000000
+ 5875 multiletter control sequences out of 15000+50000
  10390 words of font info for 36 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  25i,7n,27p,342b,614s stack positions out of 5000i,500n,10000p,200000b,50000s
-<
-/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/public
-/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
-exmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1
-/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmti7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmt
-t10.pfb>
-Output written on informe.pdf (7 pages, 460537 bytes).
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx1
+0.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmtt10.pfb>
+Output written on informe.pdf (7 pages, 524243 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
+ 88 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
