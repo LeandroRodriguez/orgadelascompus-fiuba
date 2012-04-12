@@ -83,7 +83,7 @@ También se utilizara “time” de la consola de Linux.
 Con ayuda de los links provistos por la cátedra ( wikipedia ) se programo en el lenguaje C la aplicación antes mencionada, responsable de ordenar cadenas de caracteres, ya sea leyendo los datos de 1 o varios archivos o por consola(lo que seria entrada standar). 
 Todo esto bajo el SO Ubuntu 10.04.
 \\Además de los algoritmos de ordenamiento, el programa cuenta con funciones para leer y manejar archivos, y un parser para interpretar los argumentos que se le pasan al ejecutarlo por consola.
-El parser de argumentos se implemento usando la útil librería getopt, y para manipular archivos, se siguió lo que dicta la ortodoxia de los manuales que se encuentran dando vuelta por la red.
+El parser de argumentos se implemento usando la útil librería getopt, y para manipular archivos, se utilizaron las ideas basicas de los manuales sobre manejos de archivos que se encuentran en la bibliografia de este mismo informe.
 Se configuro el gxemul para correr NetBSD sobre una maquina mips, y se lo comunico con nuestro usuario de ubuntu a través de ssh.
 \\Con el programa ya programado en C, se envió el código fuente a la maquina virtual del gxemul, se compilo por consola (cuidándose de generar el código .s), y se ejecuto allí para poder verificar que efectivamente el programa fuese portable.
 
@@ -156,7 +156,7 @@ de como se encuentra el vector. Es fácil observar también que el Merge Sort es
 Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
 Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.\\
 $SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$\\
-Vale mencionar que para N chicos, donde los tiempos de ambos métodos son 0 o casi 0, se considera el Speed Up nulo, indicando que los 2 métodos tardaron lo mismo.
+Vale mencionar que para N chicos, donde los tiempos de ambos métodos son 0 o casi 0, se considera que el Speed Up es 1, indicando que los 2 métodos tardaron lo mismo.
 A continuacion, los graficos de los Speed Up para los distintos N, segun la forma en la que se encuentra el vector a ordenar.
 
 \begin{figure}[!htp]
@@ -218,8 +218,13 @@ Con lo dicho en los puntos anteriores, vemos que:
  \item -Wall nos avisa de warnings sencillos de solucionar	
  \item -pg deja el programa listo para poder ser analizado por el gprof al correrlo
  \item -pedantic
-
 \end{enumerate}
+
+\section{Conclusion}
+Se aprendieron a usar las herramientas de analisis de software presentadas en el Resumen.
+LaTex resulto ser extremadamente util para la confección del informe. 
+Tambien el uso del profiler (gprof) para la medición de tiempos sobre los distintos segmentos del código,lo cual permite analizar que partes de este conviene optimizar.
+En cuanto a la codificación en C de los programas pedidos, se han adquirido conocimientos sobre métodos de lectura y escritura de archivos simultaneos desde consola, y la forma de "parsear" toda la información desde nuestro código para poder cumplir con las especificaciones solicitadas. 
 
 \section{Codigo fuente}
 \lstinputlisting[language=C]{main.c}
@@ -242,6 +247,9 @@ En la captura de pantalla vemos como se corria una prueba del programa e imprimi
 
     \bibitem{lamport94}
       Merge-sort, \textrm{http://en.wikipedia.org/wiki/Merge\_sort}
+
+    \bibitem{lamport94}
+      I/O, \textrm{http://icecube.wisc.edu/~dglo/c\_class/stdio.html}
 
     \bibitem{lamport94}
       Selection-sort, \textrm{http://en.wikipedia.org/wiki/Selection\_sort}

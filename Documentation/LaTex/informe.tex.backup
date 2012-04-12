@@ -10,8 +10,10 @@
 
 
 \documentclass[a4paper,10pt, notitlepage]{article}
-\usepackage[utf8x]{inputenc}
-\usepackage[english,spanish]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage[spanish]{babel} 
+\usepackage{listings}
+\usepackage{color} 
 
 \usepackage{graphicx}
 \usepackage{verbatim}
@@ -154,7 +156,7 @@ de como se encuentra el vector. Es fácil observar también que el Merge Sort es
 Cuando N tiende a números grandes, fue imposible medir el tiempo para terminar de ordenar un vector con Selection Sort, se detuvo la medición al pasar mas de 10 minutos. Para N chicos, los 2 métodos son similares.
 Usando estos valores, se consiguieron los Speed Up de Merge Sort vs Selection Sort.\\
 $SpeedUpMs=TiempoMergeSort/TiempoSelectionSort$\\
-Vale mencionar que para N chicos, donde los tiempos de ambos métodos son 0 o casi 0, se considera el Speed Up nulo, indicando que los 2 métodos tardaron lo mismo.
+Vale mencionar que para N chicos, donde los tiempos de ambos métodos son 0 o casi 0, se considera que el Speed Up es 1, indicando que los 2 métodos tardaron lo mismo.
 A continuacion, los graficos de los Speed Up para los distintos N, segun la forma en la que se encuentra el vector a ordenar.
 
 \begin{figure}[!htp]
@@ -208,6 +210,26 @@ O, debido a que Selection Sort ocupa menos espacio en memoria que Merge Sort, si
 Merge Sort para vectores grandes , y Selection Sort para vectores pequeños.
 
 \section{Comandos}
+Para compilar el programa , abrimos una terminal y escribimos:\\
+$gcc -Wall -pg -pedantic main.h$
+Con lo dicho en los puntos anteriores, vemos que:
+\begin{enumerate} 
+ \item gcc : es el compilador de C
+ \item -Wall nos avisa de warnings sencillos de solucionar	
+ \item -pg deja el programa listo para poder ser analizado por el gprof al correrlo
+ \item -pedantic
+
+\end{enumerate}
+
+\section{Codigo fuente}
+\lstinputlisting[language=C]{main.c}
+
+\section{Miscelanea}
+\includegraphics[width=12cm]{Imagenes/gxemul.PNG}
+
+Se utilizo un programa llamado Exterminator que permite correr varias terminales en una sola.
+Esto fue muy practico a la hora de tener que configurar la comunicacion ssh entre nuestra sesion de ubuntu y la maquina virtual.
+En la captura de pantalla vemos como se corria una prueba del programa e imprimia por pantalla los caracteres ordenados.
 
 \begin{thebibliography}{9}
 
@@ -235,6 +257,7 @@ Merge Sort para vectores grandes , y Selection Sort para vectores pequeños.
 
     \bibitem{lamport94}
       GNU gprof, \textrm{http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html} 
+
 
 \end{thebibliography}
 
